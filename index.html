@@ -4,462 +4,511 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Peptide FAQ Library</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #080d14;
-  --bg2: #0d1420;
-  --bg3: #121a2a;
-  --bg4: #172030;
-  --bg5: #1d2840;
-  --teal: #00e5c3;
-  --teal2: #00b89e;
-  --teal3: rgba(0,229,195,0.12);
-  --teal4: rgba(0,229,195,0.05);
+  --bg: #f8f9fc;
+  --bg2: #ffffff;
+  --bg3: #f1f5f9;
+  --bg4: #e8edf4;
+  --bg5: #dce3ed;
+  --teal: #0d9488;
+  --teal2: #0f766e;
+  --teal3: rgba(13,148,136,0.08);
+  --teal4: rgba(13,148,136,0.04);
   --gold: var(--teal);
   --gold2: var(--teal2);
   --gold3: var(--teal3);
   --gold4: var(--teal4);
-  --text: #e2eaf3;
-  --text2: #6b84a0;
-  --text3: #344d66;
-  --border: rgba(0,229,195,0.10);
-  --border2: rgba(0,229,195,0.20);
-  --border3: rgba(0,229,195,0.32);
-  --red: #e05252;
-  --green: #00e5a0;
-  --amber: #f5a623;
-  --r: 12px; --rs: 7px; --rx: 5px;
+  --text: #1e293b;
+  --text2: #64748b;
+  --text3: #94a3b8;
+  --border: #e2e8f0;
+  --border2: #cbd5e1;
+  --border3: #94a3b8;
+  --red: #dc2626;
+  --green: #059669;
+  --amber: #d97706;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+  --r: 12px; --rs: 8px; --rx: 6px;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.7;}
-
-/* grain */
-body::after{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:0.015;
- background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.7;-webkit-font-smoothing:antialiased;}
 
 /* NAV */
 nav {
  position: sticky; top: 0; z-index: 200;
- background: rgba(8,13,20,0.97); backdrop-filter: blur(24px);
+ background: rgba(255,255,255,0.92); backdrop-filter: blur(20px) saturate(1.2);
  border-bottom: 1px solid var(--border);
- display: flex; flex-direction: column; align-items: stretch;
- padding: 0;
-}
-nav::after {
- content: ''; position: absolute; top: 3px; left: 0; right: 0; height: 1px;
- background: linear-gradient(90deg, transparent 0%, rgba(0,229,195,0.35) 30%, rgba(0,229,195,0.50) 50%, rgba(0,229,195,0.35) 70%, transparent 100%);
+ display: flex; align-items: center; justify-content: space-between;
+ padding: 0 20px; height: 60px;
+ box-shadow: var(--shadow-sm);
 }
 .nav-logo {
- font-family: 'Cinzel', serif; font-weight: 700; font-size: 15px;
- color: var(--gold); letter-spacing: 0.06em; cursor: pointer;
+ font-weight: 700; font-size: 16px;
+ color: var(--teal); letter-spacing: -0.01em; cursor: pointer;
  display: flex; align-items: center; gap: 8px; flex-shrink: 0;
 }
-.nav-sep { width: 1px; height: 20px; background: var(--border2); margin: 0 20px; }
-.nav-sub { font-size: 11px; color: var(--text2); letter-spacing: 0.08em; font-style: italic; }
+.nav-logo-icon { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, var(--teal), #2dd4bf); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 13px; }
 .nav-right {
- display: flex; flex-wrap: wrap; gap: 6px;
- padding: 12px 14px; justify-content: center; align-items: center;
+ display: flex; gap: 4px; align-items: center;
 }
 .nav-btn {
- padding: 8px 16px; border-radius: 6px; font-size: 12px; font-weight: 600;
- font-family: 'DM Sans', sans-serif; letter-spacing: 0.03em; cursor: pointer;
- border: 1px solid var(--border2); background: transparent; color: var(--text2);
- transition: all 0.15s; white-space: nowrap; flex: 1 1 auto;
- text-align: center; min-width: 0;
+ padding: 8px 14px; border-radius: var(--rs); font-size: 13px; font-weight: 500;
+ font-family: 'Inter', sans-serif; cursor: pointer;
+ border: none; background: transparent; color: var(--text2);
+ transition: all 0.2s ease; white-space: nowrap;
 }
-.nav-dropdown { position: relative; flex-shrink: 0; }
-.nav-drop-btn { display: flex; align-items: center; gap: 4px; }
-.nav-drop-menu {
- display: none; position: absolute; top: calc(100% + 8px); left: 0;
- background: var(--bg2); border: 1px solid var(--border2);
- border-radius: 8px; padding: 6px; min-width: 200px; z-index: 500;
- box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+.nav-btn:hover { color: var(--text); background: var(--bg3); }
+.nav-btn.active { color: var(--teal); background: var(--teal3); font-weight: 600; }
+.nav-search-btn {
+ width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border);
+ background: var(--bg); display: flex; align-items: center; justify-content: center;
+ cursor: pointer; transition: all 0.2s; margin-left: 8px;
 }
-.nav-dropdown.open .nav-drop-menu { display: block; }
-.drop-item {
- padding: 8px 12px; border-radius: 5px; font-size: 11px;
- color: var(--text2); cursor: pointer; font-family: 'DM Sans', sans-serif;
- transition: all 0.12s; white-space: nowrap;
+.nav-search-btn:hover { border-color: var(--teal); background: var(--teal4); }
+.nav-search-btn svg { width: 16px; height: 16px; stroke: var(--text2); }
+.nav-hamburger {
+ display: none; width: 36px; height: 36px; border-radius: var(--rs); border: none;
+ background: transparent; cursor: pointer; flex-direction: column;
+ align-items: center; justify-content: center; gap: 5px;
 }
-.drop-item:hover { background: var(--bg3); color: var(--teal); }
-.nav-btn:hover { color: var(--gold); border-color: var(--gold); background: var(--gold4); }
-.nav-btn.active { color: var(--gold); border-color: rgba(0,229,195,0.35); background: var(--gold3); }
+.nav-hamburger span { display: block; width: 20px; height: 2px; background: var(--text); border-radius: 1px; transition: all 0.3s; }
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(2.5px, 2.5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(2.5px, -2.5px); }
+.nav-mobile-menu {
+ display: none; position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
+ background: rgba(255,255,255,0.98); backdrop-filter: blur(20px);
+ z-index: 199; padding: 20px; flex-direction: column; gap: 4px;
+ animation: slideDown 0.25s ease;
+}
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu .nav-btn { padding: 14px 16px; font-size: 15px; text-align: left; border-radius: var(--r); }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Global Search Overlay */
+.search-overlay {
+ display: none; position: fixed; inset: 0; z-index: 1000;
+ background: rgba(15,23,42,0.4); backdrop-filter: blur(4px);
+ padding: 80px 20px 20px; align-items: flex-start; justify-content: center;
+}
+.search-overlay.open { display: flex; }
+.search-box {
+ width: 100%; max-width: 580px; background: var(--bg2);
+ border-radius: 16px; box-shadow: var(--shadow-lg), 0 0 0 1px var(--border);
+ overflow: hidden; animation: fadeUp 0.2s ease;
+}
+.search-input-wrap { padding: 16px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border); }
+.search-input-wrap svg { width: 20px; height: 20px; stroke: var(--text3); flex-shrink: 0; }
+.search-input {
+ flex: 1; border: none; background: none; font-size: 16px; color: var(--text);
+ font-family: 'Inter', sans-serif; outline: none;
+}
+.search-input::placeholder { color: var(--text3); }
+.search-results { max-height: 400px; overflow-y: auto; padding: 8px; }
+.search-result-item {
+ display: flex; align-items: center; justify-content: space-between;
+ padding: 10px 14px; border-radius: var(--rs); cursor: pointer; transition: all 0.12s;
+}
+.search-result-item:hover { background: var(--bg3); }
+.search-result-name { font-size: 14px; font-weight: 500; color: var(--text); }
+.search-result-cat { font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 4px; background: var(--teal3); color: var(--teal); }
+.search-empty { padding: 24px; text-align: center; color: var(--text3); font-size: 14px; }
+.search-kbd { font-size: 11px; color: var(--text3); font-family: 'JetBrains Mono', monospace; background: var(--bg3); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border); }
+
+/* Back to top */
+.back-to-top {
+ position: fixed; bottom: 24px; right: 24px; z-index: 100;
+ width: 40px; height: 40px; border-radius: 50%;
+ background: var(--bg2); border: 1px solid var(--border);
+ box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center;
+ cursor: pointer; opacity: 0; pointer-events: none;
+ transition: all 0.3s ease; transform: translateY(10px);
+}
+.back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.back-to-top:hover { background: var(--teal); border-color: var(--teal); }
+.back-to-top:hover svg { stroke: #fff; }
+.back-to-top svg { width: 18px; height: 18px; stroke: var(--text2); }
 
 /* PAGES */
-.page { display: none; }
-.page.on { display: block; }
+.page { display: none; opacity: 0; transition: opacity 0.3s ease; }
+.page.on { display: block; animation: pageFadeIn 0.35s ease forwards; }
+@keyframes pageFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
 /* HOME / INDEX */
 .home-hero {
- min-height: calc(100vh - 56px);
+ min-height: calc(100vh - 60px);
  display: flex; flex-direction: column;
  align-items: center; justify-content: center;
  text-align: center; padding: 60px 24px;
  position: relative; overflow: hidden;
 }
 .home-hero::before {
- content: ''; position: absolute; top: -100px; left: 50%;
- transform: translateX(-50%); width: 700px; height: 700px;
- background: radial-gradient(ellipse, rgba(0,229,195,0.07) 0%, transparent 65%);
+ content: ''; position: absolute; top: -200px; left: 50%;
+ transform: translateX(-50%); width: 800px; height: 800px;
+ background: radial-gradient(ellipse, rgba(13,148,136,0.06) 0%, rgba(45,212,191,0.03) 30%, transparent 65%);
  pointer-events: none;
 }
 .hero-rule {
- width: 120px; height: 1px;
- background: linear-gradient(90deg, transparent, var(--gold), transparent);
- margin: 20px auto;
+ width: 60px; height: 3px; border-radius: 2px;
+ background: linear-gradient(90deg, var(--teal), #2dd4bf);
+ margin: 16px auto;
 }
 .hero-eyebrow {
- font-family: 'Cinzel', serif; font-size: 10px; font-weight: 400;
- letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
- margin-bottom: 20px;
+ font-size: 12px; font-weight: 600;
+ letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal);
+ margin-bottom: 16px; display: inline-flex; align-items: center; gap: 8px;
+ background: var(--teal3); padding: 6px 14px; border-radius: 20px;
 }
 .hero-title {
- font-family: 'Cinzel', serif; font-size: clamp(30px, 5vw, 54px);
- font-weight: 700; line-height: 1.1; color: var(--text); margin-bottom: 10px;
+ font-size: clamp(32px, 5vw, 56px);
+ font-weight: 800; line-height: 1.1; color: var(--text); margin-bottom: 12px;
+ letter-spacing: -0.02em;
 }
-.hero-title span { color: var(--gold); }
+.hero-title span { color: var(--teal); }
 .hero-sub {
- font-size: 16px; color: var(--text2); max-width: 520px;
- font-style: italic; margin-bottom: 8px;
+ font-size: 17px; color: var(--text2); max-width: 520px;
+ margin-bottom: 8px; line-height: 1.6;
 }
 .hero-credit {
- font-size: 12px; color: var(--text3); letter-spacing: 0.06em; margin-bottom: 18px;
+ font-size: 12px; color: var(--text3); letter-spacing: 0.04em; margin-bottom: 18px;
 }
 .hero-cats {
  display: flex; flex-wrap: wrap; gap: 7px;
  justify-content: center; margin-bottom: 20px;
 }
 .hcat-btn {
- padding: 5px 13px; border-radius: 20px; font-size: 10.5px;
- font-family: 'DM Sans', sans-serif; font-weight: 500;
- border: 1px solid var(--border2); background: var(--bg2);
- color: var(--text2); cursor: pointer; transition: all 0.15s;
- white-space: nowrap;
+ padding: 6px 14px; border-radius: 20px; font-size: 11px;
+ font-family: 'Inter', sans-serif; font-weight: 500;
+ border: 1px solid var(--border); background: var(--bg2);
+ color: var(--text2); cursor: pointer; transition: all 0.2s;
+ white-space: nowrap; box-shadow: var(--shadow-sm);
 }
-.hcat-btn:hover { border-color: var(--teal); color: var(--teal); background: var(--teal4); }
+.hcat-btn:hover { border-color: var(--teal); color: var(--teal); background: var(--teal4); box-shadow: var(--shadow); }
 
 /* Category grid */
 .cat-grid {
  display: grid;
- grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
- gap: 14px; max-width: 960px; width: 100%;
+ grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+ gap: 16px; max-width: 1000px; width: 100%;
 }
 .cat-card {
  background: var(--bg2); border: 1px solid var(--border);
- border-radius: 10px; padding: 22px 20px;
- cursor: pointer; transition: all 0.2s; text-align: left;
- position: relative; overflow: hidden;
+ border-radius: var(--r); padding: 24px 22px;
+ cursor: pointer; transition: all 0.25s ease; text-align: left;
+ position: relative; overflow: hidden; box-shadow: var(--shadow-sm);
 }
-.cat-card::before {
- content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
- background: linear-gradient(90deg, transparent, rgba(0,229,195,0.30), transparent);
- transform: scaleX(0); transition: transform 0.2s;
-}
-.cat-card:hover { border-color: var(--border2); background: var(--bg3); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
-.cat-card:hover::before { transform: scaleX(1); }
-.cat-icon { font-size: 24px; margin-bottom: 10px; display: block; }
-.cat-name { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600; color: var(--gold); letter-spacing: 0.04em; margin-bottom: 5px; }
-.cat-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
-.cat-count { position: absolute; top: 14px; right: 14px; font-size: 10px; font-family: 'DM Mono', monospace; color: var(--text3); }
+.cat-card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.cat-card:hover .cat-name { color: var(--teal); }
+.cat-icon { font-size: 26px; margin-bottom: 12px; display: block; }
+.cat-name { font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; margin-bottom: 6px; transition: color 0.2s; }
+.cat-desc { font-size: 13px; color: var(--text2); line-height: 1.55; }
+.cat-count { position: absolute; top: 16px; right: 16px; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--text3); background: var(--bg3); padding: 2px 8px; border-radius: 4px; }
 
 /* CATEGORY PAGES */
 .cat-page { max-width: 1080px; margin: 0 auto; padding: 40px 24px; }
 .cat-page-header {
- border-bottom: 1px solid var(--border); padding-bottom: 24px; margin-bottom: 36px;
- position: relative;
-}
-.cat-page-header::after {
- content: ''; position: absolute; bottom: -1px; left: 0; width: 160px; height: 1px;
- background: linear-gradient(90deg, var(--gold), transparent);
+ border-bottom: 1px solid var(--border); padding-bottom: 28px; margin-bottom: 36px;
 }
 .cat-page-eyebrow {
- font-family: 'Cinzel', serif; font-size: 10px; font-weight: 400;
- letter-spacing: 0.2em; text-transform: uppercase; color: var(--text3);
+ font-size: 11px; font-weight: 600;
+ letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3);
  margin-bottom: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
 }
-.cat-page-eyebrow:hover { color: var(--gold); }
+.cat-page-eyebrow:hover { color: var(--teal); }
 .cat-page-title {
- font-family: 'Cinzel', serif; font-size: clamp(22px, 4vw, 38px);
- font-weight: 700; color: var(--text); margin-bottom: 8px;
+ font-size: clamp(24px, 4vw, 38px);
+ font-weight: 800; color: var(--text); margin-bottom: 8px; letter-spacing: -0.02em;
 }
-.cat-page-sub { font-size: 15px; color: var(--text2); font-style: italic; max-width: 600px; }
+.cat-page-sub { font-size: 15px; color: var(--text2); max-width: 600px; line-height: 1.6; }
 
 /* Two col layout */
-.page-layout { display: grid; grid-template-columns: 1fr 300px; gap: 28px; align-items: start; }
+.page-layout { display: grid; grid-template-columns: 1fr 280px; gap: 28px; align-items: start; }
 
 /* Peptide cards */
-.peptide-grid { display: flex; flex-direction: column; gap: 14px; }
+.peptide-grid { display: flex; flex-direction: column; gap: 12px; }
 .peptide-card {
  background: var(--bg2); border: 1px solid var(--border);
- border-radius: 10px; overflow: hidden; transition: border-color 0.15s;
+ border-radius: var(--r); overflow: hidden; transition: all 0.2s ease;
+ box-shadow: var(--shadow-sm);
 }
-.peptide-card:hover { border-color: var(--border2); }
+.peptide-card:hover { border-color: var(--border2); box-shadow: var(--shadow); }
+.peptide-card.open { box-shadow: var(--shadow-md); border-color: var(--border2); }
 .peptide-header {
  display: flex; align-items: center; justify-content: space-between;
  padding: 16px 20px; cursor: pointer; gap: 12px;
 }
 .peptide-header:hover .peptide-name { color: var(--teal); }
-.peptide-header:hover .card-cta { color: var(--teal); border-color: rgba(0,229,195,0.35); }
 .peptide-name {
- font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600;
- color: var(--text); transition: color 0.15s; flex: 1;
+ font-size: 15px; font-weight: 600;
+ color: var(--text); transition: color 0.2s; flex: 1;
 }
 .card-cta {
- font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 600;
- color: var(--text3); border: 1px solid var(--border2); border-radius: 10px;
- padding: 3px 9px; white-space: nowrap; flex-shrink: 0;
- transition: all 0.15s; letter-spacing: 0.04em; text-transform: uppercase;
+ font-size: 10px; font-weight: 600;
+ color: var(--text3); border: 1px solid var(--border); border-radius: 6px;
+ padding: 4px 10px; white-space: nowrap; flex-shrink: 0;
+ transition: all 0.2s; letter-spacing: 0.02em; text-transform: uppercase;
 }
+.peptide-header:hover .card-cta { color: var(--teal); border-color: var(--teal); }
 .peptide-card.open .card-cta-open { display: none; }
 .peptide-card:not(.open) .card-cta-close { display: none; }
 .peptide-tags { display: flex; gap: 5px; flex-wrap: wrap; }
 .tag {
- font-size: 9px; font-family: 'DM Mono', monospace; font-weight: 500;
- padding: 2px 7px; border-radius: 3px; letter-spacing: 0.04em;
+ font-size: 10px; font-family: 'Inter', sans-serif; font-weight: 600;
+ padding: 3px 8px; border-radius: 4px; letter-spacing: 0.02em;
  text-transform: uppercase;
 }
-.tag-gold { background: var(--gold3); color: var(--gold); border: 1px solid rgba(0,229,195,0.20); }
-.tag-sage { background: rgba(0,200,154,0.12); color: var(--sage); border: 1px solid rgba(122,171,90,0.2); }
-.tag-red { background: rgba(224,82,82,0.12); color: #c0606a; border: 1px solid rgba(224,82,82,0.2); }
-.expand-icon { color: var(--teal); font-size: 14px; transition: transform 0.2s; flex-shrink: 0; font-family: 'DM Sans',sans-serif; }
+.tag-gold { background: var(--teal3); color: var(--teal); }
+.tag-sage { background: rgba(5,150,105,0.08); color: #059669; }
+.tag-red { background: rgba(220,38,38,0.08); color: #dc2626; }
+.expand-icon { color: var(--teal); font-size: 14px; transition: transform 0.3s ease; flex-shrink: 0; }
 .peptide-card.open .expand-icon { transform: rotate(180deg); }
+
+/* Card body - animated accordion */
 .peptide-body {
- display: none; padding: 0 20px 20px; border-top: 1px solid var(--border);
+ max-height: 0; overflow: hidden; padding: 0 20px;
+ border-top: 0px solid transparent;
+ transition: max-height 0.4s ease, padding 0.3s ease, border-top 0.2s ease;
 }
-/* ── Collapsed card preview system ─────────────────────────────────── */
-.peptide-body { display: none; }
-.peptide-card.open .peptide-body { display: block; }
+.peptide-card.open .peptide-body {
+ max-height: 3000px; padding: 20px;
+ border-top: 1px solid var(--border);
+}
 .card-preview {
   padding: 10px 18px 12px;
   display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center;
 }
 .preview-stat {
-  font-size: 11.5px; color: var(--text2);
+  font-size: 12px; color: var(--text2);
   display: flex; align-items: center; gap: 5px;
 }
 .preview-stat strong { color: var(--text); font-weight: 600; }
 .preview-desc {
-  font-size: 12.5px; color: var(--text2); 
-  padding: 0 18px 11px; line-height: 1.55;
-  font-style: italic;
+  font-size: 13px; color: var(--text2); 
+  padding: 0 18px 12px; line-height: 1.6;
   border-bottom: 1px solid var(--border);
 }
 .peptide-card.open .card-preview { display: none; }
 .peptide-card.open .preview-desc { display: none; }
-/* Remove reconstitution from hair index */
 
-.peptide-card.open .peptide-body { display: block; }
-
-.section-block { margin-top: 16px; }
+.section-block { margin-top: 18px; }
 .section-label {
- font-family: 'Cinzel', serif; font-size: 9.5px; font-weight: 600;
- letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
- margin-bottom: 6px; display: flex; align-items: center; gap: 7px;
+ font-size: 10px; font-weight: 700;
+ letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal);
+ margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
 }
 .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-.section-text { font-size: 14px; color: var(--text2); line-height: 1.75; font-family: 'DM Sans', sans-serif; }
+.section-text { font-size: 14px; color: var(--text2); line-height: 1.8; }
 .section-text strong { color: var(--text); font-weight: 600; }
 ul.info-list { list-style: none; padding: 0; }
 ul.info-list li {
- font-size: 13.5px; color: var(--text2); padding: 4px 0 4px 16px;
- position: relative; line-height: 1.6;
+ font-size: 14px; color: var(--text2); padding: 5px 0 5px 18px;
+ position: relative; line-height: 1.65;
 }
-ul.info-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 11px; top: 6px; }
+ul.info-list li::before { content: ''; position: absolute; left: 0; top: 13px; width: 6px; height: 6px; border-radius: 50%; background: var(--teal3); border: 1.5px solid var(--teal); }
 
 /* Stack box */
 .stack-box {
- background: var(--bg3); border: 1px solid rgba(0,229,195,0.18);
- border-radius: 8px; padding: 14px 16px; margin-top: 12px;
+ background: var(--bg3); border: 1px solid var(--border);
+ border-radius: var(--rs); padding: 16px 18px; margin-top: 14px;
 }
 .stack-box-title {
- font-family: 'Cinzel', serif; font-size: 10px; font-weight: 600;
- color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase;
- margin-bottom: 8px;
+ font-size: 10px; font-weight: 700;
+ color: var(--teal); letter-spacing: 0.08em; text-transform: uppercase;
+ margin-bottom: 10px;
 }
 .stack-combo {
  display: flex; align-items: center; gap: 7px;
- font-size: 12.5px; color: var(--text); margin-bottom: 6px;
+ font-size: 13px; color: var(--text); margin-bottom: 8px;
  flex-wrap: wrap;
 }
 .stack-combo:last-child { margin-bottom: 0; }
 .stack-pill {
- background: var(--bg4); border: 1px solid var(--border2);
- padding: 2px 9px; border-radius: 4px; font-size: 11px;
- font-family: 'DM Mono', monospace; color: var(--gold);
+ background: var(--bg2); border: 1px solid var(--border2);
+ padding: 3px 10px; border-radius: 5px; font-size: 12px;
+ font-family: 'JetBrains Mono', monospace; color: var(--teal); font-weight: 500;
 }
 .stack-plus { color: var(--text3); font-size: 13px; }
-.stack-note { font-size: 11.5px; color: var(--text2); font-style: italic; margin-top: 3px; margin-left: 4px; }
+.stack-note { font-size: 12px; color: var(--text2); margin-top: 3px; margin-left: 4px; }
 
 /* Sidebar */
 .sidebar-card {
  background: var(--bg2); border: 1px solid var(--border);
- border-radius: 10px; overflow: hidden; margin-bottom: 14px;
- position: sticky; top: 72px;
+ border-radius: var(--r); overflow: hidden; margin-bottom: 14px;
+ position: sticky; top: 72px; box-shadow: var(--shadow-sm);
 }
 .sidebar-header {
- padding: 12px 16px; border-bottom: 1px solid var(--border);
- font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600;
- letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
+ padding: 14px 16px; border-bottom: 1px solid var(--border);
+ font-size: 11px; font-weight: 700;
+ letter-spacing: 0.06em; text-transform: uppercase; color: var(--teal);
 }
 .sidebar-body { padding: 12px 14px; }
 .sidebar-link {
  display: flex; align-items: center; gap: 8px;
- padding: 7px 8px; border-radius: 5px;
+ padding: 8px 10px; border-radius: var(--rx);
  font-size: 13px; color: var(--text2); cursor: pointer;
  transition: all 0.15s; text-decoration: none;
 }
-.sidebar-link:hover { color: var(--gold); background: var(--gold4); }
-.sidebar-link-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--text3); flex-shrink: 0; }
+.sidebar-link:hover { color: var(--teal); background: var(--teal4); }
+.sidebar-link-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--border2); flex-shrink: 0; }
 
 /* Reconstitution page */
-.recon-steps { display: flex; flex-direction: column; gap: 14px; }
+.recon-steps { display: flex; flex-direction: column; gap: 12px; }
 .recon-step {
  display: flex; gap: 16px; background: var(--bg2);
- border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px;
+ border: 1px solid var(--border); border-radius: var(--r); padding: 20px 22px;
+ box-shadow: var(--shadow-sm); transition: all 0.2s;
 }
+.recon-step:hover { box-shadow: var(--shadow); }
 .recon-num {
  width: 32px; height: 32px; border-radius: 50%;
- background: var(--gold3); border: 1px solid rgba(0,229,195,0.30);
- color: var(--gold); font-family: 'Cinzel', serif; font-size: 12px;
+ background: linear-gradient(135deg, var(--teal), #2dd4bf);
+ color: #fff; font-size: 13px;
  font-weight: 700; display: flex; align-items: center; justify-content: center;
  flex-shrink: 0; margin-top: 2px;
 }
-.recon-content h3 { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
-.recon-content p { font-size: 13.5px; color: var(--text2); line-height: 1.7; }
+.recon-content h3 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.recon-content p { font-size: 14px; color: var(--text2); line-height: 1.7; }
 
 /* Info blocks */
 .info-block {
  background: var(--bg2); border: 1px solid var(--border);
- border-radius: 10px; padding: 20px 22px; margin-bottom: 14px;
+ border-radius: var(--r); padding: 22px 24px; margin-bottom: 14px;
+ box-shadow: var(--shadow-sm);
 }
-.info-block h3 { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; color: var(--gold); margin-bottom: 10px; }
-.info-block p { font-size: 14px; color: var(--text2); line-height: 1.75; }
+.info-block h3 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.info-block p { font-size: 14px; color: var(--text2); line-height: 1.8; }
 .info-block ul { list-style: none; padding: 0; }
-.info-block ul li { font-size: 13.5px; color: var(--text2); padding: 3px 0 3px 16px; position: relative; line-height: 1.6; }
-.info-block ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 11px; top: 5px; }
+.info-block ul li { font-size: 14px; color: var(--text2); padding: 4px 0 4px 18px; position: relative; line-height: 1.65; }
+.info-block ul li::before { content: ''; position: absolute; left: 0; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: var(--teal3); border: 1.5px solid var(--teal); }
 
 /* Stacking hub */
 .stack-hub { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
 .stack-section-title {
- font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600;
- letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
- margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+ font-size: 11px; font-weight: 700;
+ letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal);
+ margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
 }
 .stack-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 .stack-card {
- background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
- padding: 20px 22px; margin-bottom: 12px; transition: border-color 0.15s;
+ background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r);
+ padding: 22px 24px; margin-bottom: 12px; transition: all 0.2s;
+ box-shadow: var(--shadow-sm);
 }
-.stack-card:hover { border-color: var(--border2); }
-.stack-card-title { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-.stack-card-goal { font-size: 11px; color: var(--gold); font-family: 'DM Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
+.stack-card:hover { border-color: var(--border2); box-shadow: var(--shadow); }
+.stack-card-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.stack-card-goal { font-size: 11px; color: var(--teal); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 12px; font-weight: 500; }
 .stack-items { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 10px; }
 .stack-item-pill {
- padding: 4px 12px; border-radius: 5px; font-size: 12px;
- font-weight: 500; border: 1px solid var(--border2);
+ padding: 5px 12px; border-radius: 6px; font-size: 12px;
+ font-weight: 500; border: 1px solid var(--border);
  background: var(--bg3); color: var(--text);
 }
-.stack-item-pill.core { border-color: rgba(0,229,195,0.30); background: var(--gold3); color: var(--gold); }
-.stack-item-pill.supp { border-color: rgba(0,200,154,0.25); background: rgba(122,171,90,0.08); color: var(--sage); }
+.stack-item-pill.core { border-color: rgba(13,148,136,0.3); background: var(--teal3); color: var(--teal); font-weight: 600; }
+.stack-item-pill.supp { border-color: rgba(5,150,105,0.25); background: rgba(5,150,105,0.06); color: #059669; }
 .stack-item-pill.opt { border-color: var(--border); background: transparent; color: var(--text2); font-style: italic; }
 .stack-legend { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
 .stack-legend-item { font-size: 11px; color: var(--text3); display: flex; align-items: center; gap: 5px; }
-.stack-legend-dot { width: 8px; height: 8px; border-radius: 2px; }
-.stack-card-notes { font-size: 13.5px; color: var(--text2); line-height: 1.7; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+.stack-legend-dot { width: 8px; height: 8px; border-radius: 3px; }
+.stack-card-notes { font-size: 14px; color: var(--text2); line-height: 1.7; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
 .stack-card-notes strong { color: var(--text); }
 
 /* Misc */
-.divider { height: 1px; background: var(--border); margin: 28px 0; position: relative; }
-.divider::after { content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--bg); padding: 0 12px; color: var(--text3); font-size: 9px; }
+.divider { height: 1px; background: var(--border); margin: 32px 0; }
 .back-btn {
  display: inline-flex; align-items: center; gap: 6px;
- font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.12em;
+ font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
  text-transform: uppercase; color: var(--text2); cursor: pointer;
- transition: color 0.15s; margin-bottom: 4px;
+ transition: color 0.2s; margin-bottom: 4px;
 }
-.back-btn:hover { color: var(--gold); }
+.back-btn:hover { color: var(--teal); }
 
 .warning-box {
- background: rgba(224,82,82,0.08); border: 1px solid rgba(224,82,82,0.2);
- border-radius: 8px; padding: 14px 16px; margin-bottom: 20px;
- font-size: 13px; color: #c8707a; line-height: 1.6;
+ background: rgba(220,38,38,0.05); border: 1px solid rgba(220,38,38,0.15);
+ border-radius: var(--rs); padding: 14px 16px; margin-bottom: 20px;
+ font-size: 14px; color: #b91c1c; line-height: 1.6;
 }
 .tip-box {
- background: var(--gold4); border: 1px solid rgba(0,229,195,0.20);
- border-radius: 8px; padding: 14px 16px; margin-bottom: 14px;
- font-size: 13.5px; color: var(--text2); line-height: 1.7;
+ background: var(--teal4); border: 1px solid rgba(13,148,136,0.15);
+ border-radius: var(--rs); padding: 16px 18px; margin-bottom: 14px;
+ font-size: 14px; color: var(--text2); line-height: 1.7;
 }
-.tip-box strong { color: var(--gold); }
+.tip-box strong { color: var(--teal); }
 
 @media(max-width:768px){
  .page-layout{grid-template-columns:1fr;}
  .cat-grid{grid-template-columns:1fr 1fr;}
- .nav-right { gap: 6px; padding: 10px 10px; }
- .nav-btn { padding: 10px 12px; font-size: 12.5px; flex: 0 1 auto; }
+ .nav-right .nav-btn { display: none; }
+ .nav-hamburger { display: flex; }
+ .nav-search-btn { margin-left: auto; }
 }
 @media(max-width:480px){
  .cat-grid{grid-template-columns:1fr;}
- .nav-right { gap: 5px; padding: 8px 8px; }
- .nav-btn { padding: 9px 10px; font-size: 11.5px; }
+ .home-hero { padding: 40px 16px; }
+ .cat-page { padding: 24px 16px; }
 }
 
 /* Hair Guide Index */
 .hair-index-item {
   background: var(--bg3); border: 1px solid var(--border);
-  border-radius: 7px; padding: 10px 12px; cursor: pointer;
-  transition: all 0.15s;
+  border-radius: var(--rs); padding: 12px 14px; cursor: pointer;
+  transition: all 0.2s;
 }
-.hair-index-item:hover { border-color: var(--border2); background: var(--bg4); }
-.hair-index-item:hover .hair-index-title { color: var(--gold); }
-.hair-index-title { font-family: 'Cinzel', serif; font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
-.hair-index-sub { font-size: 11px; color: var(--text2); font-style: italic; }
-.hair-type-row { background: var(--bg3); border-radius: 6px; padding: 9px 12px; }
-.hair-type-label { font-size: 11px; font-weight: 600; color: var(--text); margin-bottom: 3px; font-family: 'Cinzel', serif; font-size: 10.5px; letter-spacing: 0.02em; }
-.hair-type-items { font-size: 11px; color: var(--gold); font-family: 'DM Mono', monospace; }
+.hair-index-item:hover { border-color: var(--border2); box-shadow: var(--shadow-sm); }
+.hair-index-item:hover .hair-index-title { color: var(--teal); }
+.hair-index-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.hair-index-sub { font-size: 11px; color: var(--text2); }
+.hair-type-row { background: var(--bg3); border-radius: var(--rx); padding: 10px 14px; }
+.hair-type-label { font-size: 11px; font-weight: 700; color: var(--text); margin-bottom: 3px; letter-spacing: 0.01em; }
+.hair-type-items { font-size: 11px; color: var(--teal); font-family: 'JetBrains Mono', monospace; font-weight: 500; }
 
 
 /* Compounds overlay */
 .cmp-item {
   display:flex;align-items:center;justify-content:space-between;
-  padding:9px 12px;border-radius:7px;cursor:pointer;
-  border:1px solid transparent;transition:all 0.12s;
+  padding:10px 14px;border-radius:var(--rs);cursor:pointer;
+  border:1px solid transparent;transition:all 0.15s;
 }
-.cmp-item:hover { background:var(--bg3);border-color:var(--border2); }
-.cmp-name { font-size:12.5px;color:var(--text);font-family:'DM Sans',sans-serif;font-weight:500; }
-.cmp-cat { font-size:9.5px;padding:2px 8px;border-radius:10px;font-weight:600;letter-spacing:0.04em;font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0;margin-left:10px; }
+.cmp-item:hover { background:var(--bg3); }
+.cmp-name { font-size:13px;color:var(--text);font-weight:500; }
+.cmp-cat { font-size:10px;padding:3px 8px;border-radius:5px;font-weight:600;letter-spacing:0.02em;white-space:nowrap;flex-shrink:0;margin-left:10px; }
 
 /* Animations */
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.au{animation:fadeUp 0.4s ease both;}
-.au2{animation:fadeUp 0.4s 0.07s ease both;}
-.au3{animation:fadeUp 0.4s 0.14s ease both;}
+.au{animation:fadeUp 0.5s ease both;}
+.au2{animation:fadeUp 0.5s 0.1s ease both;}
+.au3{animation:fadeUp 0.5s 0.2s ease both;}
 
 /* Reconstitution Calculator */
 .calc-page { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
 .calc-header { margin-bottom: 36px; }
 .calc-header h1 {
-  font-family: 'Cinzel', serif; font-size: clamp(22px, 4vw, 34px);
-  font-weight: 700; color: var(--text); margin-bottom: 8px;
+  font-size: clamp(24px, 4vw, 34px);
+  font-weight: 800; color: var(--text); margin-bottom: 8px; letter-spacing: -0.02em;
 }
-.calc-header p { font-size: 14px; color: var(--text2); font-style: italic; }
+.calc-header p { font-size: 15px; color: var(--text2); }
 
 .calc-select-wrap { margin-bottom: 24px; }
 .calc-select-wrap label {
-  display: block; font-family: 'Cinzel', serif; font-size: 10px;
-  font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  display: block; font-size: 11px;
+  font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--teal); margin-bottom: 8px;
 }
 .calc-select {
-  width: 100%; padding: 10px 14px; border-radius: 8px;
-  background: var(--bg2); border: 1px solid var(--border2);
-  color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px;
-  outline: none; cursor: pointer; appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300e5c3' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  width: 100%; padding: 12px 16px; border-radius: var(--rs);
+  background: var(--bg2); border: 1px solid var(--border);
+  color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px;
+  outline: none; cursor: pointer; appearance: none; box-shadow: var(--shadow-sm);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230d9488' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: right 14px center;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
-.calc-select:focus { border-color: var(--teal); }
+.calc-select:focus { border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal3); }
 .calc-select option { background: var(--bg2); color: var(--text); }
 
 .calc-inputs {
@@ -467,39 +516,40 @@ ul.info-list li::before { content: '—'; position: absolute; left: 0; color: va
   margin-bottom: 28px;
 }
 .calc-field label {
-  display: block; font-family: 'Cinzel', serif; font-size: 9px;
-  font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  display: block; font-size: 10px;
+  font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--text3); margin-bottom: 6px;
 }
 .calc-field input {
-  width: 100%; padding: 10px 12px; border-radius: 8px;
+  width: 100%; padding: 12px 14px; border-radius: var(--rs);
   background: var(--bg2); border: 1px solid var(--border);
-  color: var(--text); font-family: 'DM Mono', monospace; font-size: 16px;
+  color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 16px;
   font-weight: 500; outline: none; text-align: center;
-  transition: border-color 0.15s;
+  transition: border-color 0.2s, box-shadow 0.2s; box-shadow: var(--shadow-sm);
 }
-.calc-field input:focus { border-color: var(--teal); }
+.calc-field input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal3); }
 .calc-field .unit-hint {
   font-size: 10px; color: var(--text3); text-align: center;
-  margin-top: 4px; font-family: 'DM Mono', monospace;
+  margin-top: 5px; font-family: 'JetBrains Mono', monospace;
 }
 
 .calc-result {
-  background: var(--bg2); border: 1px solid var(--border2);
-  border-radius: 12px; padding: 24px; margin-bottom: 32px;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 16px; padding: 28px; margin-bottom: 32px;
   text-align: center; position: relative; overflow: hidden;
+  box-shadow: var(--shadow-md);
 }
 .calc-result::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--teal), #2dd4bf, var(--teal));
 }
 .calc-result-label {
-  font-family: 'Cinzel', serif; font-size: 10px; font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal);
   margin-bottom: 14px;
 }
 .calc-result-main {
-  font-family: 'DM Mono', monospace; font-size: 36px; font-weight: 500;
+  font-family: 'JetBrains Mono', monospace; font-size: 38px; font-weight: 500;
   color: var(--teal); margin-bottom: 4px;
 }
 .calc-result-main span { font-size: 16px; color: var(--text2); }
@@ -507,25 +557,25 @@ ul.info-list li::before { content: '—'; position: absolute; left: 0; color: va
   font-size: 14px; color: var(--text2); margin-bottom: 16px;
 }
 .calc-result-details {
-  display: flex; justify-content: center; gap: 28px;
-  padding-top: 14px; border-top: 1px solid var(--border);
+  display: flex; justify-content: center; gap: 32px;
+  padding-top: 16px; border-top: 1px solid var(--border);
 }
 .calc-detail { text-align: center; }
 .calc-detail-val {
-  font-family: 'DM Mono', monospace; font-size: 15px;
+  font-family: 'JetBrains Mono', monospace; font-size: 16px;
   font-weight: 500; color: var(--text);
 }
 .calc-detail-label {
-  font-size: 10px; color: var(--text3); margin-top: 2px;
-  letter-spacing: 0.04em;
+  font-size: 10px; color: var(--text3); margin-top: 3px;
+  letter-spacing: 0.03em;
 }
 
 .calc-syringe-wrap {
   display: flex; flex-direction: column; align-items: center; gap: 16px;
 }
 .syringe-label {
-  font-family: 'Cinzel', serif; font-size: 10px; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3);
 }
 .syringe-container {
   position: relative; width: 120px; height: 340px;
@@ -533,9 +583,9 @@ ul.info-list li::before { content: '—'; position: absolute; left: 0; color: va
 .syringe-svg { width: 100%; height: 100%; }
 
 .calc-warning {
-  background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.25);
-  border-radius: 8px; padding: 12px 16px; margin-top: 20px;
-  font-size: 12px; color: #d4a04a; text-align: center; display: none;
+  background: rgba(217,119,6,0.06); border: 1px solid rgba(217,119,6,0.2);
+  border-radius: var(--rs); padding: 12px 16px; margin-top: 20px;
+  font-size: 13px; color: #b45309; text-align: center; display: none;
 }
 
 @media(max-width:600px){
@@ -547,25 +597,56 @@ ul.info-list li::before { content: '—'; position: absolute; left: 0; color: va
 <body>
 
 <nav>
+ <div class="nav-logo" onclick="showPage('home')"><div class="nav-logo-icon">P</div> Peptide FAQ</div>
  <div class="nav-right">
   <button class="nav-btn active" id="nb-home" onclick="showPage('home')">Home</button>
   <button class="nav-btn" onclick="openCompounds()">Compounds</button>
-  <button class="nav-btn" id="nb-stack" onclick="showPage('stacking')">Stacking Guide</button>
-  <button class="nav-btn" id="nb-recon" onclick="showPage('recon')">Reconstitute</button>
-  <button class="nav-btn" id="nb-calculator" onclick="showPage('calculator')">Recon Calculator</button>
+  <button class="nav-btn" id="nb-stack" onclick="showPage('stacking')">Stacking</button>
+  <button class="nav-btn" id="nb-recon" onclick="showPage('recon')">Reconstitution</button>
+  <button class="nav-btn" id="nb-calculator" onclick="showPage('calculator')">Calculator</button>
+  <button class="nav-search-btn" onclick="openSearch()" title="Search (⌘K)">
+   <svg fill="none" viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3" stroke-linecap="round"/></svg>
+  </button>
  </div>
+ <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()">
+  <span></span><span></span><span></span>
+ </button>
 </nav>
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+ <button class="nav-btn" onclick="showPage('home');closeMobileMenu()">Home</button>
+ <button class="nav-btn" onclick="openCompounds();closeMobileMenu()">All Compounds</button>
+ <button class="nav-btn" onclick="showPage('stacking');closeMobileMenu()">Stacking Guide</button>
+ <button class="nav-btn" onclick="showPage('recon');closeMobileMenu()">Reconstitution</button>
+ <button class="nav-btn" onclick="showPage('calculator');closeMobileMenu()">Calculator</button>
+</div>
+
+<!-- Global Search -->
+<div class="search-overlay" id="search-overlay" onclick="if(event.target===this)closeSearch()">
+ <div class="search-box">
+  <div class="search-input-wrap">
+   <svg fill="none" viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3" stroke-linecap="round"/></svg>
+   <input class="search-input" id="global-search" type="text" placeholder="Search compounds..." oninput="globalSearch(this.value)" autocomplete="off">
+   <span class="search-kbd">ESC</span>
+  </div>
+  <div class="search-results" id="search-results">
+   <div class="search-empty">Type to search all 52 compounds...</div>
+  </div>
+ </div>
+</div>
+
+<!-- Back to top -->
+<div class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+ <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5"><path d="M18 15l-6-6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
 
 <!-- HOME -->
 <div class="page on" id="page-home">
  <div class="home-hero">
  <div class="hero-eyebrow au">Free Information · No Courses</div>
- <div class="hero-rule au"></div>
  <h1 class="hero-title au2">Peptide <span>FAQ</span> Library</h1>
+ <div class="hero-rule au2"></div>
  <p class="hero-sub au2">Every compound. Clear answers. No fluff.</p>
- <p class="hero-credit au2">Peptide FAQ</p>
- <p class="au2" style="font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">For Research Purposes Only</p>
- <div class="hero-rule au2" style="margin-bottom:48px"></div>
+ <p class="au2" style="font-size:12px;color:var(--text3);letter-spacing:0.04em;margin-bottom:32px;margin-top:8px">For Research Purposes Only</p>
 
  <div class="cat-grid au3">
  <div class="cat-card" onclick="showPage('hair')">
@@ -648,7 +729,7 @@ ul.info-list li::before { content: '—'; position: absolute; left: 0; color: va
 
 <!-- HAIR GUIDE INDEX -->
 <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px 22px;margin-bottom:28px">
-  <div style="font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px">Hair Guide Index <span style="flex:1;height:1px;background:var(--border);display:block"></span></div>
+  <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;display:flex;align-items:center;gap:10px">Hair Guide Index <span style="flex:1;height:1px;background:var(--border);display:block"></span></div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px">
     <div class="hair-index-item" onclick="openCard('pc-ahkcu')">
       <div class="hair-index-title">AHK-Cu</div>
@@ -702,7 +783,7 @@ ul.info-list li::before { content: '—'; position: absolute; left: 0; color: va
 
   <!-- Hair loss type quick guide -->
   <div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--border)">
-    <div style="font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:10px">By Hair Loss Type</div>
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3);margin-bottom:10px">By Hair Loss Type</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px">
       <div class="hair-type-row">
         <div class="hair-type-label">Androgenic (DHT-driven)</div>
@@ -3292,7 +3373,7 @@ ul.info-list li::before { content: '—'; position: absolute; left: 0; color: va
   </div>
 
   <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px 22px;margin-bottom:28px">
-   <div style="font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;display:flex;align-items:center;gap:10px">Anxiety &amp; Mood Index <span style="flex:1;height:1px;background:var(--border);display:block"></span></div>
+   <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;display:flex;align-items:center;gap:10px">Anxiety &amp; Mood Index <span style="flex:1;height:1px;background:var(--border);display:block"></span></div>
    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-bottom:16px">
     <div class="hair-index-item" onclick="openCard('pc-anx-selank')"><div class="hair-index-title">Selank</div><div class="hair-index-sub">GABA + serotonin anxiolytic — nasal</div></div>
     <div class="hair-index-item" onclick="openCard('pc-anx-aniracetam')"><div class="hair-index-title">Aniracetam</div><div class="hair-index-sub">mGluR anxiolytic + creative cognition</div></div>
@@ -3308,7 +3389,7 @@ ul.info-list li::before { content: '—'; position: absolute; left: 0; color: va
     <div class="hair-index-item" onclick="showPage('stacking')"><div class="hair-index-title">Mood Enhancement Stack</div><div class="hair-index-sub">Full protocol in stacking guide</div></div>
    </div>
    <div style="padding-top:14px;border-top:1px solid var(--border)">
-    <div style="font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:10px">By Situation</div>
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3);margin-bottom:10px">By Situation</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px">
      <div class="hair-type-row"><div class="hair-type-label">Social anxiety / performance</div><div class="hair-type-items">Selank + Aniracetam + L-Theanine</div></div>
      <div class="hair-type-row"><div class="hair-type-label">Chronic background anxiety</div><div class="hair-type-items">Selank daily + DSIP at night + KPV</div></div>
@@ -3946,7 +4027,7 @@ ul.info-list li::before { content: '—'; position: absolute; left: 0; color: va
  <div class="divider" style="max-width:720px"></div>
 
  <div style="max-width:720px">
- <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">Nasal Spray Peptides — Special Instructions</div>
+ <div style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--teal);margin-bottom:16px">Nasal Spray Peptides — Special Instructions</div>
  <div class="info-block">
  <h3>Reconstituting for Nasal Spray (Semax, Selank, Adamax, PT-141)</h3>
  <p>Nasal spray peptides are reconstituted the same way but typically with sterile saline (0.9% NaCl) rather than bacteriostatic water — the benzyl alcohol preservative in BAC water can irritate nasal mucosa at high concentrations.</p>
@@ -4083,45 +4164,45 @@ ul.info-list li::before { content: '—'; position: absolute; left: 0; color: va
   <div class="syringe-container">
    <svg class="syringe-svg" viewBox="0 0 120 340" xmlns="http://www.w3.org/2000/svg">
     <!-- Plunger rod -->
-    <rect x="54" y="0" width="12" height="60" rx="2" fill="#2a3a50"/>
-    <rect x="42" y="54" width="36" height="8" rx="3" fill="#344d66"/>
+    <rect x="54" y="0" width="12" height="60" rx="2" fill="#94a3b8"/>
+    <rect x="42" y="54" width="36" height="8" rx="3" fill="#64748b"/>
 
     <!-- Barrel outer -->
-    <rect x="36" y="60" width="48" height="230" rx="6" fill="#0d1420" stroke="rgba(0,229,195,0.25)" stroke-width="1.5"/>
+    <rect x="36" y="60" width="48" height="230" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
 
     <!-- Unit markings -->
-    <line x1="40" y1="280" x2="56" y2="280" stroke="#344d66" stroke-width="0.8"/>
-    <text x="30" y="283" fill="#4a6580" font-size="8" font-family="DM Mono" text-anchor="end">0</text>
+    <line x1="40" y1="280" x2="56" y2="280" stroke="#94a3b8" stroke-width="0.8"/>
+    <text x="30" y="283" fill="#64748b" font-size="8" font-family="JetBrains Mono" text-anchor="end">0</text>
 
-    <line x1="44" y1="258" x2="52" y2="258" stroke="#2a3a50" stroke-width="0.5"/>
-    <line x1="40" y1="236" x2="56" y2="236" stroke="#344d66" stroke-width="0.8"/>
-    <text x="30" y="239" fill="#4a6580" font-size="8" font-family="DM Mono" text-anchor="end">20</text>
+    <line x1="44" y1="258" x2="52" y2="258" stroke="#cbd5e1" stroke-width="0.5"/>
+    <line x1="40" y1="236" x2="56" y2="236" stroke="#94a3b8" stroke-width="0.8"/>
+    <text x="30" y="239" fill="#64748b" font-size="8" font-family="JetBrains Mono" text-anchor="end">20</text>
 
-    <line x1="44" y1="214" x2="52" y2="214" stroke="#2a3a50" stroke-width="0.5"/>
-    <line x1="40" y1="192" x2="56" y2="192" stroke="#344d66" stroke-width="0.8"/>
-    <text x="30" y="195" fill="#4a6580" font-size="8" font-family="DM Mono" text-anchor="end">40</text>
+    <line x1="44" y1="214" x2="52" y2="214" stroke="#cbd5e1" stroke-width="0.5"/>
+    <line x1="40" y1="192" x2="56" y2="192" stroke="#94a3b8" stroke-width="0.8"/>
+    <text x="30" y="195" fill="#64748b" font-size="8" font-family="JetBrains Mono" text-anchor="end">40</text>
 
-    <line x1="44" y1="170" x2="52" y2="170" stroke="#2a3a50" stroke-width="0.5"/>
-    <line x1="40" y1="148" x2="56" y2="148" stroke="#344d66" stroke-width="0.8"/>
-    <text x="30" y="151" fill="#4a6580" font-size="8" font-family="DM Mono" text-anchor="end">60</text>
+    <line x1="44" y1="170" x2="52" y2="170" stroke="#cbd5e1" stroke-width="0.5"/>
+    <line x1="40" y1="148" x2="56" y2="148" stroke="#94a3b8" stroke-width="0.8"/>
+    <text x="30" y="151" fill="#64748b" font-size="8" font-family="JetBrains Mono" text-anchor="end">60</text>
 
-    <line x1="44" y1="126" x2="52" y2="126" stroke="#2a3a50" stroke-width="0.5"/>
-    <line x1="40" y1="104" x2="56" y2="104" stroke="#344d66" stroke-width="0.8"/>
-    <text x="30" y="107" fill="#4a6580" font-size="8" font-family="DM Mono" text-anchor="end">80</text>
+    <line x1="44" y1="126" x2="52" y2="126" stroke="#cbd5e1" stroke-width="0.5"/>
+    <line x1="40" y1="104" x2="56" y2="104" stroke="#94a3b8" stroke-width="0.8"/>
+    <text x="30" y="107" fill="#64748b" font-size="8" font-family="JetBrains Mono" text-anchor="end">80</text>
 
-    <line x1="44" y1="82" x2="52" y2="82" stroke="#2a3a50" stroke-width="0.5"/>
-    <line x1="40" y1="60" x2="56" y2="60" stroke="#344d66" stroke-width="0.8"/>
-    <text x="30" y="63" fill="#4a6580" font-size="8" font-family="DM Mono" text-anchor="end">100</text>
+    <line x1="44" y1="82" x2="52" y2="82" stroke="#cbd5e1" stroke-width="0.5"/>
+    <line x1="40" y1="60" x2="56" y2="60" stroke="#94a3b8" stroke-width="0.8"/>
+    <text x="30" y="63" fill="#64748b" font-size="8" font-family="JetBrains Mono" text-anchor="end">100</text>
 
     <!-- Fill liquid (animated) -->
-    <rect id="syringe-fill" x="38" y="258" width="44" height="22" rx="0" fill="rgba(0,229,195,0.25)" style="transition: y 0.4s ease, height 0.4s ease;"/>
+    <rect id="syringe-fill" x="38" y="258" width="44" height="22" rx="0" fill="rgba(13,148,136,0.2)" style="transition: y 0.4s ease, height 0.4s ease;"/>
     <!-- Fill line indicator -->
-    <line id="syringe-line" x1="36" y1="258" x2="84" y2="258" stroke="#00e5c3" stroke-width="2" style="transition: y1 0.4s ease, y2 0.4s ease;"/>
+    <line id="syringe-line" x1="36" y1="258" x2="84" y2="258" stroke="#0d9488" stroke-width="2" style="transition: y1 0.4s ease, y2 0.4s ease;"/>
 
     <!-- Needle hub -->
-    <rect x="48" y="290" width="24" height="14" rx="3" fill="#1d2840" stroke="rgba(0,229,195,0.15)" stroke-width="1"/>
+    <rect x="48" y="290" width="24" height="14" rx="3" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
     <!-- Needle -->
-    <line x1="60" y1="304" x2="60" y2="340" stroke="#6b84a0" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="60" y1="304" x2="60" y2="340" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
    </svg>
   </div>
  </div>
@@ -4144,13 +4225,13 @@ function toggleCard(id){
  if(!card) return;
  const wasOpen = card.classList.contains('open');
  card.classList.toggle('open');
- if(!wasOpen) setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+ if(!wasOpen) setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'nearest'}),80);
 }
 function openCard(id){
  const card=document.getElementById(id);
  if(card){
    card.classList.add('open');
-   setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'start'}),60);
+   setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'start'}),80);
  }
 }
 
@@ -4165,6 +4246,7 @@ function closeCompounds(){
 }
 function openCompound(page,cid){
   closeCompounds();
+  closeSearch();
   showPage(page);
   setTimeout(()=>{
     const el=document.getElementById(cid);
@@ -4180,18 +4262,135 @@ function filterCompounds(q){
     item.style.display=(name.includes(lq)||cat.includes(lq))?'':'none';
   });
 }
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCompounds();});
 
-function closeDrop(){document.querySelectorAll('.nav-dropdown').forEach(d=>d.classList.remove('open'));}
-const _dropBtn=document.querySelector('.nav-drop-btn');if(_dropBtn)_dropBtn.addEventListener('click',function(e){
- e.stopPropagation();
- const d=this.closest('.nav-dropdown');
- const wasOpen=d.classList.contains('open');
- closeDrop();
- if(!wasOpen)d.classList.add('open');
+// Mobile menu
+function toggleMobileMenu(){
+  const menu=document.getElementById('nav-mobile-menu');
+  const btn=document.getElementById('nav-hamburger');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+  document.body.style.overflow=menu.classList.contains('open')?'hidden':'';
+}
+function closeMobileMenu(){
+  document.getElementById('nav-mobile-menu').classList.remove('open');
+  document.getElementById('nav-hamburger').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// Global search
+var compoundData=[
+  {name:'5-Amino-1MQ',cat:'Weight Loss',page:'weight',id:'pc-5amino'},
+  {name:'AHK-Cu',cat:'Hair / Skin',page:'hair',id:'pc-ahkcu'},
+  {name:'AOD-9604',cat:'Weight Loss',page:'weight',id:'pc-aod'},
+  {name:'BPC-157',cat:'Recovery',page:'recovery',id:'pc-bpc157'},
+  {name:'CB-03-01 (Breezula)',cat:'Hair',page:'hair',id:'pc-cb0301'},
+  {name:'CJC-1295 (No DAC)',cat:'Muscle',page:'muscle',id:'pc-cjcnodac'},
+  {name:'Dapoxetine HCl',cat:'Sexual Health',page:'sexual',id:'pc-sex-dapo'},
+  {name:'Dihexa',cat:'Cognitive',page:'cognitive',id:'pc-dihexa'},
+  {name:'DSIP',cat:'Recovery',page:'recovery',id:'pc-dsip'},
+  {name:'Enclomiphene',cat:'Muscle',page:'muscle',id:'pc-enclomiphene'},
+  {name:'Epithalon',cat:'Longevity',page:'longevity',id:'pc-epithalon'},
+  {name:'FollicRX',cat:'Hair',page:'hair',id:'pc-follicrox'},
+  {name:'GHK-Cu',cat:'Hair / Skin',page:'hair',id:'pc-ghkcu'},
+  {name:'GLOW Stack',cat:'Hair / Skin',page:'hair',id:'pc-glow'},
+  {name:'GLP3 (Dual GLP-1/GLP-2)',cat:'Weight Loss',page:'weight',id:'pc-glp3'},
+  {name:'Glutathione',cat:'Recovery',page:'recovery',id:'pc-glut'},
+  {name:'Gonadorelin',cat:'Fertility',page:'fertility',id:'pc-fert-gona'},
+  {name:'HCG',cat:'Fertility',page:'fertility',id:'pc-fert-hcg'},
+  {name:'HMG',cat:'Fertility',page:'fertility',id:'pc-fert-hmg'},
+  {name:'IGF-1 LR3',cat:'Muscle',page:'muscle',id:'pc-igf1'},
+  {name:'Ipamorelin',cat:'Muscle',page:'muscle',id:'pc-ipamorelin'},
+  {name:'Kisspeptin-10',cat:'Fertility',page:'fertility',id:'pc-fert-kiss'},
+  {name:'KLOW Stack',cat:'Hair / Skin',page:'hair',id:'pc-klow'},
+  {name:'KPV',cat:'Recovery',page:'recovery',id:'pc-kpv'},
+  {name:'L-Carnitine',cat:'Weight Loss',page:'weight',id:'pc-lcarnitine'},
+  {name:'L-Theanine',cat:'Anxiety / Mood',page:'anxiety',id:'pc-anx-theanine'},
+  {name:'Melanotan I (MT-1)',cat:'Hair / Skin',page:'hair',id:'pc-mt1'},
+  {name:'Melanotan II (MT-2)',cat:'Hair / Skin',page:'hair',id:'pc-mt2'},
+  {name:'Methylene Blue',cat:'Cognitive',page:'cognitive',id:'pc-mblue'},
+  {name:'Minoxidil',cat:'Hair',page:'hair',id:'pc-minox'},
+  {name:'MK-677 (Ibutamoren)',cat:'Muscle',page:'muscle',id:'pc-mk677'},
+  {name:'Modafinil',cat:'Cognitive',page:'cognitive',id:'pc-modafinil'},
+  {name:'MOTS-c',cat:'Longevity',page:'longevity',id:'pc-long-motsc'},
+  {name:'NAD+',cat:'Recovery',page:'recovery',id:'pc-nad'},
+  {name:'Oxiracetam',cat:'Cognitive',page:'cognitive',id:'pc-oxiracetam'},
+  {name:'Phenibut',cat:'Anxiety / Mood',page:'anxiety',id:'pc-anx-phenibut'},
+  {name:'Phenylpiracetam',cat:'Cognitive',page:'cognitive',id:'pc-phenylpiracetam'},
+  {name:'Pinealon',cat:'Cognitive',page:'cognitive',id:'pc-pinealon'},
+  {name:'PP405',cat:'Hair',page:'hair',id:'pc-pp405'},
+  {name:'PT-141 (Bremelanotide)',cat:'Sexual Health',page:'sexual',id:'pc-sex-pt141'},
+  {name:'Retatrutide',cat:'Weight Loss',page:'weight',id:'pc-retat'},
+  {name:'RU58841',cat:'Hair',page:'hair',id:'pc-ru58841'},
+  {name:'Selank',cat:'Cognitive',page:'cognitive',id:'pc-selank'},
+  {name:'Semaglutide',cat:'Weight Loss',page:'weight',id:'pc-sema'},
+  {name:'Semax',cat:'Cognitive',page:'cognitive',id:'pc-semax'},
+  {name:'Sermorelin',cat:'Muscle',page:'muscle',id:'pc-sermorelin'},
+  {name:'SS-31 (Elamipretide)',cat:'Recovery',page:'recovery',id:'pc-ss31'},
+  {name:'TB-500',cat:'Recovery',page:'recovery',id:'pc-tb500'},
+  {name:'Thymosin Alpha-1',cat:'Recovery',page:'recovery',id:'pc-thymosin'},
+  {name:'Tirzepatide',cat:'Weight Loss',page:'weight',id:'pc-tirz'},
+  {name:'Adamax (Semax + Selank)',cat:'Cognitive',page:'cognitive',id:'pc-adamax'},
+  {name:'Aniracetam',cat:'Cognitive',page:'cognitive',id:'pc-aniracetam'}
+];
+function openSearch(){
+  document.getElementById('search-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  setTimeout(function(){document.getElementById('global-search').focus();},100);
+}
+function closeSearch(){
+  document.getElementById('search-overlay').classList.remove('open');
+  document.getElementById('global-search').value='';
+  renderSearchResults([]);
+  document.body.style.overflow='';
+}
+function renderSearchResults(matches){
+  var container=document.getElementById('search-results');
+  while(container.firstChild) container.removeChild(container.firstChild);
+  if(matches===null||matches.length===0){
+    var empty=document.createElement('div');
+    empty.className='search-empty';
+    empty.textContent=matches===null?'Type to search all 52 compounds...':'No compounds found';
+    container.appendChild(empty);
+    return;
+  }
+  matches.slice(0,12).forEach(function(c){
+    var item=document.createElement('div');
+    item.className='search-result-item';
+    item.onclick=function(){openCompound(c.page,c.id);};
+    var nameEl=document.createElement('span');
+    nameEl.className='search-result-name';
+    nameEl.textContent=c.name;
+    var catEl=document.createElement('span');
+    catEl.className='search-result-cat';
+    catEl.textContent=c.cat;
+    item.appendChild(nameEl);
+    item.appendChild(catEl);
+    container.appendChild(item);
+  });
+}
+function globalSearch(q){
+  if(!q.trim()){renderSearchResults(null);return;}
+  var lq=q.toLowerCase();
+  var matches=compoundData.filter(function(c){
+    return c.name.toLowerCase().indexOf(lq)!==-1||c.cat.toLowerCase().indexOf(lq)!==-1;
+  });
+  renderSearchResults(matches);
+}
+
+// Back to top button
+window.addEventListener('scroll',function(){
+  var btn=document.getElementById('back-to-top');
+  if(window.scrollY>300) btn.classList.add('visible');
+  else btn.classList.remove('visible');
+},{passive:true});
+
+// Keyboard shortcuts
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){closeCompounds();closeSearch();closeMobileMenu();}
+  if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();openSearch();}
 });
-document.addEventListener('click',closeDrop);
-document.getElementById('fy')&&(document.getElementById('fy').textContent=`© ${new Date().getFullYear()} Peptide FAQ · Free Information, No Courses`);
+
+document.getElementById('fy')&&(document.getElementById('fy').textContent='\u00A9 '+new Date().getFullYear()+' Peptide FAQ \u00B7 Free Information, No Courses');
 
 function calcUpdate(){
   var vial = parseFloat(document.getElementById('calc-vial').value) || 0;
@@ -4258,7 +4457,7 @@ calcUpdate();
 
 <!-- BEGINNER GUIDE (bottom section) -->
 <div id="beginner-guide-bottom" style="max-width:960px;margin:60px auto 0;padding:0 24px 80px">
- <div style="height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin-bottom:48px"></div>
+ <div style="height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin-bottom:48px"></div>
  <div class="cat-page-header">
   <h1 class="cat-page-title">Beginner's Guide</h1>
  <p class="cat-page-sub">New to peptides? Start here. This guide walks through the essentials — what peptides are, how to approach them safely, and the best starting compounds by goal.</p>
@@ -4322,225 +4521,225 @@ calcUpdate();
 </div>
 </div>
 <!-- COMPOUNDS PANEL -->
-<div id="compounds-overlay" onclick="if(event.target===this)closeCompounds()" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);overflow-y:auto;padding:20px">
- <div style="max-width:720px;margin:0 auto;background:var(--bg2);border:1px solid var(--border2);border-radius:14px;overflow:hidden">
+<div id="compounds-overlay" onclick="if(event.target===this)closeCompounds()" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(15,23,42,0.3);backdrop-filter:blur(4px);overflow-y:auto;padding:20px">
+ <div style="max-width:720px;margin:0 auto;background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg)">
   <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:2">
-   <div style="font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:var(--teal);letter-spacing:0.08em">ALL COMPOUNDS <span style="font-size:10px;color:var(--text3);font-weight:400;margin-left:6px">52 profiles</span></div>
-   <button onclick="closeCompounds()" style="background:none;border:none;color:var(--text2);font-size:20px;cursor:pointer;padding:0 4px;line-height:1">&times;</button>
+   <div style="font-size:14px;font-weight:700;color:var(--text);letter-spacing:-0.01em">All Compounds <span style="font-size:12px;color:var(--text3);font-weight:400;margin-left:6px">52 profiles</span></div>
+   <button onclick="closeCompounds()" style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text2);font-size:16px;cursor:pointer;padding:2px 8px;line-height:1.2">&times;</button>
   </div>
   <div style="padding:10px 14px;border-bottom:1px solid var(--border);background:var(--bg3)">
    <input id="cmp-search" type="text" placeholder="Search compounds..." oninput="filterCompounds(this.value)"
-    style="width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:7px 12px;color:var(--text);font-size:12px;font-family:'DM Sans',sans-serif;outline:none;box-sizing:border-box">
+    style="width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:9px 14px;color:var(--text);font-size:13px;font-family:'Inter',sans-serif;outline:none;box-sizing:border-box;box-shadow:var(--shadow-sm)">
   </div>
   <div id="cmp-list" style="padding:10px 14px;display:flex;flex-direction:column;gap:4px">
 
     <div class="cmp-item" onclick="openCompound('weight','pc-5amino')">
       <span class="cmp-name">5-Amino-1MQ</span>
-      <span class="cmp-cat" style="background:#6a4a1a20;color:#6a4a1a;border:1px solid #6a4a1a40">Weight Loss</span>
+      <span class="cmp-cat" style="background:#fef3c7;color:#92400e;border:1px solid #fde68a">Weight Loss</span>
     </div>
     <div class="cmp-item" onclick="openCompound('cognitive','pc-adamax')">
       <span class="cmp-name">Adamax (Semax + Selank)</span>
-      <span class="cmp-cat" style="background:#1a3a5a20;color:#1a3a5a;border:1px solid #1a3a5a40">Cognitive</span>
+      <span class="cmp-cat" style="background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe">Cognitive</span>
     </div>
     <div class="cmp-item" onclick="openCompound('hair','pc-ahkcu')">
       <span class="cmp-name">AHK-Cu</span>
-      <span class="cmp-cat" style="background:#2a6a3a20;color:#2a6a3a;border:1px solid #2a6a3a40">Hair / Skin</span>
+      <span class="cmp-cat" style="background:#d1fae5;color:#065f46;border:1px solid #a7f3d0">Hair / Skin</span>
     </div>
     <div class="cmp-item" onclick="openCompound('cognitive','pc-aniracetam')">
       <span class="cmp-name">Aniracetam</span>
-      <span class="cmp-cat" style="background:#1a3a5a20;color:#1a3a5a;border:1px solid #1a3a5a40">Cognitive</span>
+      <span class="cmp-cat" style="background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe">Cognitive</span>
     </div>
     <div class="cmp-item" onclick="openCompound('weight','pc-aod')">
       <span class="cmp-name">AOD-9604</span>
-      <span class="cmp-cat" style="background:#6a4a1a20;color:#6a4a1a;border:1px solid #6a4a1a40">Weight Loss</span>
+      <span class="cmp-cat" style="background:#fef3c7;color:#92400e;border:1px solid #fde68a">Weight Loss</span>
     </div>
     <div class="cmp-item" onclick="openCompound('recovery','pc-bpc157')">
       <span class="cmp-name">BPC-157</span>
-      <span class="cmp-cat" style="background:#1a4a6a20;color:#1a4a6a;border:1px solid #1a4a6a40">Recovery</span>
+      <span class="cmp-cat" style="background:#ccfbf1;color:#0f766e;border:1px solid #99f6e4">Recovery</span>
     </div>
     <div class="cmp-item" onclick="openCompound('hair','pc-cb0301')">
       <span class="cmp-name">CB-03-01 (Breezula)</span>
-      <span class="cmp-cat" style="background:#2a6a3a20;color:#2a6a3a;border:1px solid #2a6a3a40">Hair</span>
+      <span class="cmp-cat" style="background:#d1fae5;color:#065f46;border:1px solid #a7f3d0">Hair</span>
     </div>
     <div class="cmp-item" onclick="openCompound('muscle','pc-cjcnodac')">
       <span class="cmp-name">CJC-1295 (No DAC)</span>
-      <span class="cmp-cat" style="background:#4a2a6a20;color:#4a2a6a;border:1px solid #4a2a6a40">Muscle</span>
+      <span class="cmp-cat" style="background:#ede9fe;color:#5b21b6;border:1px solid #ddd6fe">Muscle</span>
     </div>
     <div class="cmp-item" onclick="openCompound('sexual','pc-sex-dapo')">
       <span class="cmp-name">Dapoxetine HCl</span>
-      <span class="cmp-cat" style="background:#4a1a3a20;color:#4a1a3a;border:1px solid #4a1a3a40">Sexual Health</span>
+      <span class="cmp-cat" style="background:#fce7f3;color:#9d174d;border:1px solid #fbcfe8">Sexual Health</span>
     </div>
     <div class="cmp-item" onclick="openCompound('cognitive','pc-dihexa')">
       <span class="cmp-name">Dihexa</span>
-      <span class="cmp-cat" style="background:#1a3a5a20;color:#1a3a5a;border:1px solid #1a3a5a40">Cognitive</span>
+      <span class="cmp-cat" style="background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe">Cognitive</span>
     </div>
     <div class="cmp-item" onclick="openCompound('recovery','pc-dsip')">
       <span class="cmp-name">DSIP</span>
-      <span class="cmp-cat" style="background:#1a4a6a20;color:#1a4a6a;border:1px solid #1a4a6a40">Recovery</span>
+      <span class="cmp-cat" style="background:#ccfbf1;color:#0f766e;border:1px solid #99f6e4">Recovery</span>
     </div>
     <div class="cmp-item" onclick="openCompound('muscle','pc-enclomiphene')">
       <span class="cmp-name">Enclomiphene</span>
-      <span class="cmp-cat" style="background:#4a2a6a20;color:#4a2a6a;border:1px solid #4a2a6a40">Muscle</span>
+      <span class="cmp-cat" style="background:#ede9fe;color:#5b21b6;border:1px solid #ddd6fe">Muscle</span>
     </div>
     <div class="cmp-item" onclick="openCompound('longevity','pc-epithalon')">
       <span class="cmp-name">Epithalon</span>
-      <span class="cmp-cat" style="background:#1a5a4a20;color:#1a5a4a;border:1px solid #1a5a4a40">Longevity</span>
+      <span class="cmp-cat" style="background:#d1fae5;color:#047857;border:1px solid #a7f3d0">Longevity</span>
     </div>
     <div class="cmp-item" onclick="openCompound('hair','pc-follicrox')">
       <span class="cmp-name">FollicRX</span>
-      <span class="cmp-cat" style="background:#2a6a3a20;color:#2a6a3a;border:1px solid #2a6a3a40">Hair</span>
+      <span class="cmp-cat" style="background:#d1fae5;color:#065f46;border:1px solid #a7f3d0">Hair</span>
     </div>
     <div class="cmp-item" onclick="openCompound('hair','pc-ghkcu')">
       <span class="cmp-name">GHK-Cu</span>
-      <span class="cmp-cat" style="background:#2a6a3a20;color:#2a6a3a;border:1px solid #2a6a3a40">Hair / Skin</span>
+      <span class="cmp-cat" style="background:#d1fae5;color:#065f46;border:1px solid #a7f3d0">Hair / Skin</span>
     </div>
     <div class="cmp-item" onclick="openCompound('hair','pc-glow')">
       <span class="cmp-name">GLOW Stack</span>
-      <span class="cmp-cat" style="background:#2a6a3a20;color:#2a6a3a;border:1px solid #2a6a3a40">Hair / Skin</span>
+      <span class="cmp-cat" style="background:#d1fae5;color:#065f46;border:1px solid #a7f3d0">Hair / Skin</span>
     </div>
     <div class="cmp-item" onclick="openCompound('weight','pc-glp3')">
       <span class="cmp-name">GLP3 (Dual GLP-1/GLP-2)</span>
-      <span class="cmp-cat" style="background:#6a4a1a20;color:#6a4a1a;border:1px solid #6a4a1a40">Weight Loss</span>
+      <span class="cmp-cat" style="background:#fef3c7;color:#92400e;border:1px solid #fde68a">Weight Loss</span>
     </div>
     <div class="cmp-item" onclick="openCompound('recovery','pc-glut')">
       <span class="cmp-name">Glutathione</span>
-      <span class="cmp-cat" style="background:#1a4a6a20;color:#1a4a6a;border:1px solid #1a4a6a40">Recovery</span>
+      <span class="cmp-cat" style="background:#ccfbf1;color:#0f766e;border:1px solid #99f6e4">Recovery</span>
     </div>
     <div class="cmp-item" onclick="openCompound('fertility','pc-fert-gona')">
       <span class="cmp-name">Gonadorelin</span>
-      <span class="cmp-cat" style="background:#6a2a2a20;color:#6a2a2a;border:1px solid #6a2a2a40">Fertility</span>
+      <span class="cmp-cat" style="background:#fee2e2;color:#991b1b;border:1px solid #fecaca">Fertility</span>
     </div>
     <div class="cmp-item" onclick="openCompound('fertility','pc-fert-hcg')">
       <span class="cmp-name">HCG</span>
-      <span class="cmp-cat" style="background:#6a2a2a20;color:#6a2a2a;border:1px solid #6a2a2a40">Fertility</span>
+      <span class="cmp-cat" style="background:#fee2e2;color:#991b1b;border:1px solid #fecaca">Fertility</span>
     </div>
     <div class="cmp-item" onclick="openCompound('fertility','pc-fert-hmg')">
       <span class="cmp-name">HMG</span>
-      <span class="cmp-cat" style="background:#6a2a2a20;color:#6a2a2a;border:1px solid #6a2a2a40">Fertility</span>
+      <span class="cmp-cat" style="background:#fee2e2;color:#991b1b;border:1px solid #fecaca">Fertility</span>
     </div>
     <div class="cmp-item" onclick="openCompound('muscle','pc-igf1')">
       <span class="cmp-name">IGF-1 LR3</span>
-      <span class="cmp-cat" style="background:#4a2a6a20;color:#4a2a6a;border:1px solid #4a2a6a40">Muscle</span>
+      <span class="cmp-cat" style="background:#ede9fe;color:#5b21b6;border:1px solid #ddd6fe">Muscle</span>
     </div>
     <div class="cmp-item" onclick="openCompound('muscle','pc-ipamorelin')">
       <span class="cmp-name">Ipamorelin</span>
-      <span class="cmp-cat" style="background:#4a2a6a20;color:#4a2a6a;border:1px solid #4a2a6a40">Muscle</span>
+      <span class="cmp-cat" style="background:#ede9fe;color:#5b21b6;border:1px solid #ddd6fe">Muscle</span>
     </div>
     <div class="cmp-item" onclick="openCompound('fertility','pc-fert-kiss')">
       <span class="cmp-name">Kisspeptin-10</span>
-      <span class="cmp-cat" style="background:#6a2a2a20;color:#6a2a2a;border:1px solid #6a2a2a40">Fertility</span>
+      <span class="cmp-cat" style="background:#fee2e2;color:#991b1b;border:1px solid #fecaca">Fertility</span>
     </div>
     <div class="cmp-item" onclick="openCompound('hair','pc-klow')">
       <span class="cmp-name">KLOW Stack</span>
-      <span class="cmp-cat" style="background:#2a6a3a20;color:#2a6a3a;border:1px solid #2a6a3a40">Hair / Skin</span>
+      <span class="cmp-cat" style="background:#d1fae5;color:#065f46;border:1px solid #a7f3d0">Hair / Skin</span>
     </div>
     <div class="cmp-item" onclick="openCompound('recovery','pc-kpv')">
       <span class="cmp-name">KPV</span>
-      <span class="cmp-cat" style="background:#1a4a6a20;color:#1a4a6a;border:1px solid #1a4a6a40">Recovery</span>
+      <span class="cmp-cat" style="background:#ccfbf1;color:#0f766e;border:1px solid #99f6e4">Recovery</span>
     </div>
     <div class="cmp-item" onclick="openCompound('weight','pc-lcarnitine')">
       <span class="cmp-name">L-Carnitine</span>
-      <span class="cmp-cat" style="background:#6a4a1a20;color:#6a4a1a;border:1px solid #6a4a1a40">Weight Loss</span>
+      <span class="cmp-cat" style="background:#fef3c7;color:#92400e;border:1px solid #fde68a">Weight Loss</span>
     </div>
     <div class="cmp-item" onclick="openCompound('anxiety','pc-anx-theanine')">
       <span class="cmp-name">L-Theanine</span>
-      <span class="cmp-cat" style="background:#5a2a4a20;color:#5a2a4a;border:1px solid #5a2a4a40">Anxiety / Mood</span>
+      <span class="cmp-cat" style="background:#f3e8ff;color:#7c3aed;border:1px solid #e9d5ff">Anxiety / Mood</span>
     </div>
     <div class="cmp-item" onclick="openCompound('hair','pc-mt1')">
       <span class="cmp-name">Melanotan I (MT-1)</span>
-      <span class="cmp-cat" style="background:#2a6a3a20;color:#2a6a3a;border:1px solid #2a6a3a40">Hair / Skin</span>
+      <span class="cmp-cat" style="background:#d1fae5;color:#065f46;border:1px solid #a7f3d0">Hair / Skin</span>
     </div>
     <div class="cmp-item" onclick="openCompound('hair','pc-mt2')">
       <span class="cmp-name">Melanotan II (MT-2)</span>
-      <span class="cmp-cat" style="background:#2a6a3a20;color:#2a6a3a;border:1px solid #2a6a3a40">Hair / Skin</span>
+      <span class="cmp-cat" style="background:#d1fae5;color:#065f46;border:1px solid #a7f3d0">Hair / Skin</span>
     </div>
     <div class="cmp-item" onclick="openCompound('cognitive','pc-mblue')">
       <span class="cmp-name">Methylene Blue</span>
-      <span class="cmp-cat" style="background:#1a3a5a20;color:#1a3a5a;border:1px solid #1a3a5a40">Cognitive</span>
+      <span class="cmp-cat" style="background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe">Cognitive</span>
     </div>
     <div class="cmp-item" onclick="openCompound('hair','pc-minox')">
       <span class="cmp-name">Minoxidil</span>
-      <span class="cmp-cat" style="background:#2a6a3a20;color:#2a6a3a;border:1px solid #2a6a3a40">Hair</span>
+      <span class="cmp-cat" style="background:#d1fae5;color:#065f46;border:1px solid #a7f3d0">Hair</span>
     </div>
     <div class="cmp-item" onclick="openCompound('muscle','pc-mk677')">
       <span class="cmp-name">MK-677 (Ibutamoren)</span>
-      <span class="cmp-cat" style="background:#4a2a6a20;color:#4a2a6a;border:1px solid #4a2a6a40">Muscle</span>
+      <span class="cmp-cat" style="background:#ede9fe;color:#5b21b6;border:1px solid #ddd6fe">Muscle</span>
     </div>
     <div class="cmp-item" onclick="openCompound('cognitive','pc-modafinil')">
       <span class="cmp-name">Modafinil</span>
-      <span class="cmp-cat" style="background:#1a3a5a20;color:#1a3a5a;border:1px solid #1a3a5a40">Cognitive</span>
+      <span class="cmp-cat" style="background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe">Cognitive</span>
     </div>
     <div class="cmp-item" onclick="openCompound('longevity','pc-long-motsc')">
       <span class="cmp-name">MOTS-c</span>
-      <span class="cmp-cat" style="background:#1a5a4a20;color:#1a5a4a;border:1px solid #1a5a4a40">Longevity</span>
+      <span class="cmp-cat" style="background:#d1fae5;color:#047857;border:1px solid #a7f3d0">Longevity</span>
     </div>
     <div class="cmp-item" onclick="openCompound('recovery','pc-nad')">
       <span class="cmp-name">NAD+</span>
-      <span class="cmp-cat" style="background:#1a4a6a20;color:#1a4a6a;border:1px solid #1a4a6a40">Recovery</span>
+      <span class="cmp-cat" style="background:#ccfbf1;color:#0f766e;border:1px solid #99f6e4">Recovery</span>
     </div>
     <div class="cmp-item" onclick="openCompound('cognitive','pc-oxiracetam')">
       <span class="cmp-name">Oxiracetam</span>
-      <span class="cmp-cat" style="background:#1a3a5a20;color:#1a3a5a;border:1px solid #1a3a5a40">Cognitive</span>
+      <span class="cmp-cat" style="background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe">Cognitive</span>
     </div>
     <div class="cmp-item" onclick="openCompound('anxiety','pc-anx-phenibut')">
       <span class="cmp-name">Phenibut</span>
-      <span class="cmp-cat" style="background:#5a2a4a20;color:#5a2a4a;border:1px solid #5a2a4a40">Anxiety / Mood</span>
+      <span class="cmp-cat" style="background:#f3e8ff;color:#7c3aed;border:1px solid #e9d5ff">Anxiety / Mood</span>
     </div>
     <div class="cmp-item" onclick="openCompound('cognitive','pc-phenylpiracetam')">
       <span class="cmp-name">Phenylpiracetam</span>
-      <span class="cmp-cat" style="background:#1a3a5a20;color:#1a3a5a;border:1px solid #1a3a5a40">Cognitive</span>
+      <span class="cmp-cat" style="background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe">Cognitive</span>
     </div>
     <div class="cmp-item" onclick="openCompound('cognitive','pc-pinealon')">
       <span class="cmp-name">Pinealon</span>
-      <span class="cmp-cat" style="background:#1a3a5a20;color:#1a3a5a;border:1px solid #1a3a5a40">Cognitive</span>
+      <span class="cmp-cat" style="background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe">Cognitive</span>
     </div>
     <div class="cmp-item" onclick="openCompound('hair','pc-pp405')">
       <span class="cmp-name">PP405</span>
-      <span class="cmp-cat" style="background:#2a6a3a20;color:#2a6a3a;border:1px solid #2a6a3a40">Hair</span>
+      <span class="cmp-cat" style="background:#d1fae5;color:#065f46;border:1px solid #a7f3d0">Hair</span>
     </div>
     <div class="cmp-item" onclick="openCompound('sexual','pc-sex-pt141')">
       <span class="cmp-name">PT-141 (Bremelanotide)</span>
-      <span class="cmp-cat" style="background:#4a1a3a20;color:#4a1a3a;border:1px solid #4a1a3a40">Sexual Health</span>
+      <span class="cmp-cat" style="background:#fce7f3;color:#9d174d;border:1px solid #fbcfe8">Sexual Health</span>
     </div>
     <div class="cmp-item" onclick="openCompound('weight','pc-retat')">
       <span class="cmp-name">Retatrutide</span>
-      <span class="cmp-cat" style="background:#6a4a1a20;color:#6a4a1a;border:1px solid #6a4a1a40">Weight Loss</span>
+      <span class="cmp-cat" style="background:#fef3c7;color:#92400e;border:1px solid #fde68a">Weight Loss</span>
     </div>
     <div class="cmp-item" onclick="openCompound('hair','pc-ru58841')">
       <span class="cmp-name">RU58841</span>
-      <span class="cmp-cat" style="background:#2a6a3a20;color:#2a6a3a;border:1px solid #2a6a3a40">Hair</span>
+      <span class="cmp-cat" style="background:#d1fae5;color:#065f46;border:1px solid #a7f3d0">Hair</span>
     </div>
     <div class="cmp-item" onclick="openCompound('cognitive','pc-selank')">
       <span class="cmp-name">Selank</span>
-      <span class="cmp-cat" style="background:#1a3a5a20;color:#1a3a5a;border:1px solid #1a3a5a40">Cognitive</span>
+      <span class="cmp-cat" style="background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe">Cognitive</span>
     </div>
     <div class="cmp-item" onclick="openCompound('weight','pc-sema')">
       <span class="cmp-name">Semaglutide</span>
-      <span class="cmp-cat" style="background:#6a4a1a20;color:#6a4a1a;border:1px solid #6a4a1a40">Weight Loss</span>
+      <span class="cmp-cat" style="background:#fef3c7;color:#92400e;border:1px solid #fde68a">Weight Loss</span>
     </div>
     <div class="cmp-item" onclick="openCompound('cognitive','pc-semax')">
       <span class="cmp-name">Semax</span>
-      <span class="cmp-cat" style="background:#1a3a5a20;color:#1a3a5a;border:1px solid #1a3a5a40">Cognitive</span>
+      <span class="cmp-cat" style="background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe">Cognitive</span>
     </div>
     <div class="cmp-item" onclick="openCompound('muscle','pc-sermorelin')">
       <span class="cmp-name">Sermorelin</span>
-      <span class="cmp-cat" style="background:#4a2a6a20;color:#4a2a6a;border:1px solid #4a2a6a40">Muscle</span>
+      <span class="cmp-cat" style="background:#ede9fe;color:#5b21b6;border:1px solid #ddd6fe">Muscle</span>
     </div>
     <div class="cmp-item" onclick="openCompound('recovery','pc-ss31')">
       <span class="cmp-name">SS-31 (Elamipretide)</span>
-      <span class="cmp-cat" style="background:#1a4a6a20;color:#1a4a6a;border:1px solid #1a4a6a40">Recovery</span>
+      <span class="cmp-cat" style="background:#ccfbf1;color:#0f766e;border:1px solid #99f6e4">Recovery</span>
     </div>
     <div class="cmp-item" onclick="openCompound('recovery','pc-tb500')">
       <span class="cmp-name">TB-500</span>
-      <span class="cmp-cat" style="background:#1a4a6a20;color:#1a4a6a;border:1px solid #1a4a6a40">Recovery</span>
+      <span class="cmp-cat" style="background:#ccfbf1;color:#0f766e;border:1px solid #99f6e4">Recovery</span>
     </div>
     <div class="cmp-item" onclick="openCompound('recovery','pc-thymosin')">
       <span class="cmp-name">Thymosin Alpha-1</span>
-      <span class="cmp-cat" style="background:#1a4a6a20;color:#1a4a6a;border:1px solid #1a4a6a40">Recovery</span>
+      <span class="cmp-cat" style="background:#ccfbf1;color:#0f766e;border:1px solid #99f6e4">Recovery</span>
     </div>
     <div class="cmp-item" onclick="openCompound('weight','pc-tirz')">
       <span class="cmp-name">Tirzepatide</span>
-      <span class="cmp-cat" style="background:#6a4a1a20;color:#6a4a1a;border:1px solid #6a4a1a40">Weight Loss</span>
+      <span class="cmp-cat" style="background:#fef3c7;color:#92400e;border:1px solid #fde68a">Weight Loss</span>
     </div>
   </div>
  </div>
