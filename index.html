@@ -36,8 +36,10 @@
   --r: 12px; --rs: 8px; --rx: 6px;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
+html,body{overflow-x:hidden;width:100%;max-width:100vw;}
 html{scroll-behavior:smooth;}
-body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.7;-webkit-font-smoothing:antialiased;}
+.page,nav,.nav-mobile-menu{max-width:100vw;overflow-x:hidden;}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.7;-webkit-font-smoothing:antialiased;}
 
 /* NAV */
 nav {
@@ -240,8 +242,8 @@ nav {
 .peptide-card:hover { border-color: var(--border2); box-shadow: var(--shadow); }
 .peptide-card.open { box-shadow: var(--shadow-md); border-color: var(--border2); }
 .peptide-header {
- display: flex; align-items: center; justify-content: space-between;
- padding: 16px 20px; cursor: pointer; gap: 12px;
+ display: flex; align-items: center; flex-wrap: wrap;
+ padding: 16px 20px; cursor: pointer; gap: 8px 12px;
 }
 .peptide-header:hover .peptide-name { color: var(--teal); }
 .peptide-name {
@@ -446,11 +448,18 @@ ul.info-list li::before { content: ''; position: absolute; left: 0; top: 13px; w
  .nav-right .nav-btn { display: none; }
  .nav-hamburger { display: flex; }
  .nav-search-btn { margin-left: auto; }
+ .peptide-header { padding: 14px 16px; }
+ .peptide-name { font-size: 14px; }
+ .card-preview { padding: 8px 16px 10px; }
+ .preview-desc { padding: 0 16px 10px; }
 }
 @media(max-width:480px){
  .cat-grid{grid-template-columns:1fr;}
  .home-hero { padding: 40px 16px; }
  .cat-page { padding: 24px 16px; }
+ .peptide-header { padding: 12px 14px; }
+ .stack-box { padding: 12px 14px; }
+ .info-block { padding: 16px 16px; }
 }
 
 /* Hair Guide Index */
@@ -465,7 +474,7 @@ ul.info-list li::before { content: ''; position: absolute; left: 0; top: 13px; w
 .hair-index-sub { font-size: 11px; color: var(--text2); }
 .hair-type-row { background: var(--bg3); border-radius: var(--rx); padding: 10px 14px; }
 .hair-type-label { font-size: 11px; font-weight: 700; color: var(--text); margin-bottom: 3px; letter-spacing: 0.01em; }
-.hair-type-items { font-size: 11px; color: var(--teal); font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+.hair-type-items { font-size: 11px; color: var(--teal); font-family: 'JetBrains Mono', monospace; font-weight: 500; word-break: break-word; }
 
 
 /* Compounds overlay */
