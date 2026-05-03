@@ -430,6 +430,113 @@ ul.info-list li::before { content: '—'; position: absolute; left: 0; color: va
 .au{animation:fadeUp 0.4s ease both;}
 .au2{animation:fadeUp 0.4s 0.07s ease both;}
 .au3{animation:fadeUp 0.4s 0.14s ease both;}
+
+/* Reconstitution Calculator */
+.calc-page { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
+.calc-header { margin-bottom: 36px; }
+.calc-header h1 {
+  font-family: 'Cinzel', serif; font-size: clamp(22px, 4vw, 34px);
+  font-weight: 700; color: var(--text); margin-bottom: 8px;
+}
+.calc-header p { font-size: 14px; color: var(--text2); font-style: italic; }
+
+.calc-select-wrap { margin-bottom: 24px; }
+.calc-select-wrap label {
+  display: block; font-family: 'Cinzel', serif; font-size: 10px;
+  font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 8px;
+}
+.calc-select {
+  width: 100%; padding: 10px 14px; border-radius: 8px;
+  background: var(--bg2); border: 1px solid var(--border2);
+  color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px;
+  outline: none; cursor: pointer; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300e5c3' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+}
+.calc-select:focus { border-color: var(--teal); }
+.calc-select option { background: var(--bg2); color: var(--text); }
+
+.calc-inputs {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;
+  margin-bottom: 28px;
+}
+.calc-field label {
+  display: block; font-family: 'Cinzel', serif; font-size: 9px;
+  font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 6px;
+}
+.calc-field input {
+  width: 100%; padding: 10px 12px; border-radius: 8px;
+  background: var(--bg2); border: 1px solid var(--border);
+  color: var(--text); font-family: 'DM Mono', monospace; font-size: 16px;
+  font-weight: 500; outline: none; text-align: center;
+  transition: border-color 0.15s;
+}
+.calc-field input:focus { border-color: var(--teal); }
+.calc-field .unit-hint {
+  font-size: 10px; color: var(--text3); text-align: center;
+  margin-top: 4px; font-family: 'DM Mono', monospace;
+}
+
+.calc-result {
+  background: var(--bg2); border: 1px solid var(--border2);
+  border-radius: 12px; padding: 24px; margin-bottom: 32px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.calc-result::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+}
+.calc-result-label {
+  font-family: 'Cinzel', serif; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal);
+  margin-bottom: 14px;
+}
+.calc-result-main {
+  font-family: 'DM Mono', monospace; font-size: 36px; font-weight: 500;
+  color: var(--teal); margin-bottom: 4px;
+}
+.calc-result-main span { font-size: 16px; color: var(--text2); }
+.calc-result-sub {
+  font-size: 14px; color: var(--text2); margin-bottom: 16px;
+}
+.calc-result-details {
+  display: flex; justify-content: center; gap: 28px;
+  padding-top: 14px; border-top: 1px solid var(--border);
+}
+.calc-detail { text-align: center; }
+.calc-detail-val {
+  font-family: 'DM Mono', monospace; font-size: 15px;
+  font-weight: 500; color: var(--text);
+}
+.calc-detail-label {
+  font-size: 10px; color: var(--text3); margin-top: 2px;
+  letter-spacing: 0.04em;
+}
+
+.calc-syringe-wrap {
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+}
+.syringe-label {
+  font-family: 'Cinzel', serif; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3);
+}
+.syringe-container {
+  position: relative; width: 120px; height: 340px;
+}
+.syringe-svg { width: 100%; height: 100%; }
+
+.calc-warning {
+  background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.25);
+  border-radius: 8px; padding: 12px 16px; margin-top: 20px;
+  font-size: 12px; color: #d4a04a; text-align: center; display: none;
+}
+
+@media(max-width:600px){
+  .calc-inputs { grid-template-columns: 1fr; }
+  .calc-result-details { flex-direction: column; gap: 12px; }
+}
 </style>
 </head>
 <body>
@@ -440,6 +547,7 @@ ul.info-list li::before { content: '—'; position: absolute; left: 0; color: va
   <button class="nav-btn" onclick="openCompounds()">Compounds</button>
   <button class="nav-btn" id="nb-stack" onclick="showPage('stacking')">Stacking Guide</button>
   <button class="nav-btn" id="nb-recon" onclick="showPage('recon')">Reconstitute</button>
+  <button class="nav-btn" id="nb-calculator" onclick="showPage('calculator')">Recon Calculator</button>
  </div>
 </nav>
 
@@ -3873,6 +3981,149 @@ ul.info-list li::before { content: '—'; position: absolute; left: 0; color: va
 
 <!-- BEGINNER GUIDE -->
 
+<!-- RECONSTITUTION CALCULATOR -->
+<div class="page" id="page-calculator">
+<div class="calc-page">
+ <div class="calc-header">
+  <h1>Reconstitution Calculator</h1>
+  <p>Select your peptide, enter your vial and water amounts, and see exactly how many units to draw.</p>
+ </div>
+
+ <div class="calc-select-wrap">
+  <label>Select Peptide</label>
+  <select class="calc-select" id="calc-peptide" onchange="calcUpdate()">
+   <option value="">-- Choose a compound --</option>
+   <option>5-Amino-1MQ</option>
+   <option>AHK-Cu</option>
+   <option>AOD-9604</option>
+   <option>BPC-157</option>
+   <option>CJC-1295 (No DAC)</option>
+   <option>Dihexa</option>
+   <option>DSIP</option>
+   <option>Enclomiphene</option>
+   <option>Epithalon</option>
+   <option>GHK-Cu</option>
+   <option>GLOW Stack</option>
+   <option>Glutathione</option>
+   <option>Gonadorelin</option>
+   <option>HCG</option>
+   <option>HMG</option>
+   <option>IGF-1 LR3</option>
+   <option>Ipamorelin</option>
+   <option>Kisspeptin-10</option>
+   <option>KPV</option>
+   <option>L-Carnitine</option>
+   <option>Melanotan I (MT-1)</option>
+   <option>Melanotan II (MT-2)</option>
+   <option>MK-677 (Ibutamoren)</option>
+   <option>MOTS-c</option>
+   <option>NAD+</option>
+   <option>Pinealon</option>
+   <option>PT-141 (Bremelanotide)</option>
+   <option>Retatrutide</option>
+   <option>Selank</option>
+   <option>Semaglutide</option>
+   <option>Semax</option>
+   <option>Sermorelin</option>
+   <option>SS-31 (Elamipretide)</option>
+   <option>TB-500</option>
+   <option>Tesamorelin</option>
+   <option>Thymosin Alpha-1</option>
+   <option>Tirzepatide</option>
+  </select>
+ </div>
+
+ <div class="calc-inputs">
+  <div class="calc-field">
+   <label>Vial Size</label>
+   <input type="number" id="calc-vial" value="5" min="0.1" step="0.1" oninput="calcUpdate()">
+   <div class="unit-hint">mg</div>
+  </div>
+  <div class="calc-field">
+   <label>BAC Water Added</label>
+   <input type="number" id="calc-water" value="2" min="0.1" step="0.1" oninput="calcUpdate()">
+   <div class="unit-hint">mL</div>
+  </div>
+  <div class="calc-field">
+   <label>Desired Dose</label>
+   <input type="number" id="calc-dose" value="250" min="1" step="1" oninput="calcUpdate()">
+   <div class="unit-hint">mcg</div>
+  </div>
+ </div>
+
+ <div class="calc-result" id="calc-result">
+  <div class="calc-result-label">Draw This Amount</div>
+  <div class="calc-result-main" id="calc-units">10 <span>units</span></div>
+  <div class="calc-result-sub" id="calc-vol">0.10 mL</div>
+  <div class="calc-result-details">
+   <div class="calc-detail">
+    <div class="calc-detail-val" id="calc-conc">2,500</div>
+    <div class="calc-detail-label">mcg / mL</div>
+   </div>
+   <div class="calc-detail">
+    <div class="calc-detail-val" id="calc-per-unit">25</div>
+    <div class="calc-detail-label">mcg / unit</div>
+   </div>
+   <div class="calc-detail">
+    <div class="calc-detail-val" id="calc-doses-left">20</div>
+    <div class="calc-detail-label">doses per vial</div>
+   </div>
+  </div>
+ </div>
+
+ <div class="calc-warning" id="calc-warning">Dose exceeds syringe capacity (100 units / 1 mL). Consider adding more BAC water or splitting into two injections.</div>
+
+ <div class="calc-syringe-wrap">
+  <div class="syringe-label">1 mL Insulin Syringe (100 Units)</div>
+  <div class="syringe-container">
+   <svg class="syringe-svg" viewBox="0 0 120 340" xmlns="http://www.w3.org/2000/svg">
+    <!-- Plunger rod -->
+    <rect x="54" y="0" width="12" height="60" rx="2" fill="#2a3a50"/>
+    <rect x="42" y="54" width="36" height="8" rx="3" fill="#344d66"/>
+
+    <!-- Barrel outer -->
+    <rect x="36" y="60" width="48" height="230" rx="6" fill="#0d1420" stroke="rgba(0,229,195,0.25)" stroke-width="1.5"/>
+
+    <!-- Unit markings -->
+    <line x1="40" y1="280" x2="56" y2="280" stroke="#344d66" stroke-width="0.8"/>
+    <text x="30" y="283" fill="#4a6580" font-size="8" font-family="DM Mono" text-anchor="end">0</text>
+
+    <line x1="44" y1="258" x2="52" y2="258" stroke="#2a3a50" stroke-width="0.5"/>
+    <line x1="40" y1="236" x2="56" y2="236" stroke="#344d66" stroke-width="0.8"/>
+    <text x="30" y="239" fill="#4a6580" font-size="8" font-family="DM Mono" text-anchor="end">20</text>
+
+    <line x1="44" y1="214" x2="52" y2="214" stroke="#2a3a50" stroke-width="0.5"/>
+    <line x1="40" y1="192" x2="56" y2="192" stroke="#344d66" stroke-width="0.8"/>
+    <text x="30" y="195" fill="#4a6580" font-size="8" font-family="DM Mono" text-anchor="end">40</text>
+
+    <line x1="44" y1="170" x2="52" y2="170" stroke="#2a3a50" stroke-width="0.5"/>
+    <line x1="40" y1="148" x2="56" y2="148" stroke="#344d66" stroke-width="0.8"/>
+    <text x="30" y="151" fill="#4a6580" font-size="8" font-family="DM Mono" text-anchor="end">60</text>
+
+    <line x1="44" y1="126" x2="52" y2="126" stroke="#2a3a50" stroke-width="0.5"/>
+    <line x1="40" y1="104" x2="56" y2="104" stroke="#344d66" stroke-width="0.8"/>
+    <text x="30" y="107" fill="#4a6580" font-size="8" font-family="DM Mono" text-anchor="end">80</text>
+
+    <line x1="44" y1="82" x2="52" y2="82" stroke="#2a3a50" stroke-width="0.5"/>
+    <line x1="40" y1="60" x2="56" y2="60" stroke="#344d66" stroke-width="0.8"/>
+    <text x="30" y="63" fill="#4a6580" font-size="8" font-family="DM Mono" text-anchor="end">100</text>
+
+    <!-- Fill liquid (animated) -->
+    <rect id="syringe-fill" x="38" y="258" width="44" height="22" rx="0" fill="rgba(0,229,195,0.25)" style="transition: y 0.4s ease, height 0.4s ease;"/>
+    <!-- Fill line indicator -->
+    <line id="syringe-line" x1="36" y1="258" x2="84" y2="258" stroke="#00e5c3" stroke-width="2" style="transition: y1 0.4s ease, y2 0.4s ease;"/>
+
+    <!-- Needle hub -->
+    <rect x="48" y="290" width="24" height="14" rx="3" fill="#1d2840" stroke="rgba(0,229,195,0.15)" stroke-width="1"/>
+    <!-- Needle -->
+    <line x1="60" y1="304" x2="60" y2="340" stroke="#6b84a0" stroke-width="1.5" stroke-linecap="round"/>
+   </svg>
+  </div>
+ </div>
+
+</div>
+</div>
+
 <script>
 function showPage(id){
  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
@@ -3936,6 +4187,68 @@ const _dropBtn=document.querySelector('.nav-drop-btn');if(_dropBtn)_dropBtn.addE
 });
 document.addEventListener('click',closeDrop);
 document.getElementById('fy')&&(document.getElementById('fy').textContent=`© ${new Date().getFullYear()} Peptide FAQ · Free Information, No Courses`);
+
+function calcUpdate(){
+  var vial = parseFloat(document.getElementById('calc-vial').value) || 0;
+  var water = parseFloat(document.getElementById('calc-water').value) || 0;
+  var dose = parseFloat(document.getElementById('calc-dose').value) || 0;
+  var warning = document.getElementById('calc-warning');
+  var unitsEl = document.getElementById('calc-units');
+  var volEl = document.getElementById('calc-vol');
+  var concEl = document.getElementById('calc-conc');
+  var perUnitEl = document.getElementById('calc-per-unit');
+  var dosesEl = document.getElementById('calc-doses-left');
+
+  if(vial <= 0 || water <= 0 || dose <= 0){
+    unitsEl.textContent = '-- units';
+    volEl.textContent = '-- mL';
+    concEl.textContent = '--';
+    perUnitEl.textContent = '--';
+    dosesEl.textContent = '--';
+    updateSyringe(0);
+    warning.style.display = 'none';
+    return;
+  }
+
+  var concMcgPerMl = (vial * 1000) / water;
+  var concPerUnit = concMcgPerMl / 100;
+  var units = dose / concPerUnit;
+  var volMl = units / 100;
+  var dosesPerVial = Math.floor((vial * 1000) / dose);
+
+  unitsEl.textContent = units.toFixed(1) + ' units';
+  volEl.textContent = volMl.toFixed(2) + ' mL';
+  concEl.textContent = concMcgPerMl.toLocaleString();
+  perUnitEl.textContent = concPerUnit.toFixed(1);
+  dosesEl.textContent = dosesPerVial;
+
+  if(units > 100){
+    warning.style.display = 'block';
+  } else {
+    warning.style.display = 'none';
+  }
+
+  updateSyringe(Math.min(units, 100));
+}
+
+function updateSyringe(units){
+  var fill = document.getElementById('syringe-fill');
+  var line = document.getElementById('syringe-line');
+  if(!fill || !line) return;
+
+  var barrelTop = 60;
+  var barrelBottom = 280;
+  var barrelHeight = barrelBottom - barrelTop;
+  var fillHeight = (units / 100) * barrelHeight;
+  var fillY = barrelBottom - fillHeight;
+
+  fill.setAttribute('y', fillY);
+  fill.setAttribute('height', fillHeight);
+  line.setAttribute('y1', fillY);
+  line.setAttribute('y2', fillY);
+}
+
+calcUpdate();
 </script>
 
 <!-- BEGINNER GUIDE (bottom section) -->
